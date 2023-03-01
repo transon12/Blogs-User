@@ -1,0 +1,29 @@
+.row-gap {
+    margin-bottom: 20px;
+}
+.informationAccount {
+    align-self: flex-start;
+    box-sizing: border-box;
+}
+.fullName {
+    margin-top: 10px;
+}
+.imageAvatar {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: auto;
+    padding-right: auto;
+    width: 100%;
+}
+.userDivision {
+    color: #12c99b;
+    font-size: 16px;
+    font-weight: 700 !important;
+    margin-bottom: 8px;
+}
+.popConfirmTitle {
+    text-align: center;
+}

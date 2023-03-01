@@ -1,0 +1,30 @@
+@import '../../../assets/scss/custom/common';
+
+.forgot {
+    align-self: center;
+    flex-direction: column;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    background-image: url(../../../assets/images/login/background-dep-5.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.input-forgot {
+    border-radius: 8px;
+    width: 100%;
+}
+.get-code {
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-end;
+}
+.border-get-code {
+    background-color: $white;
+    padding: 30px;
+    border-radius: 30px;
+}
+.text-type-email {
+    font-size: 18;
+    font-weight: bold;
+}

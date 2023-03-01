@@ -1,0 +1,38 @@
+// .ant-dbody {
+//     padding: 0 !important;
+// }
+
+.menu-icon-primary {
+    display: none !important;
+}
+
+@media screen and (max-width: 856px) {
+    .menu-icon-primary {
+        display: block !important;
+        color: black !important;
+        background-color: #fff !important;
+        border: 0 !important;
+        margin: 5px 5px !important;
+    }
+    .col-menu-drawer {
+        // display: none;
+    }
+    .ant-row-drawer {
+        display: flex !important;
+        justify-content: space-between !important;
+    }
+    .logo {
+        display: none !important;
+    }
+    .ant-menu-horizontal {
+        display: none !important;
+    }
+}
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 800px) {
+}
+
+@media screen and (max-width: 1200px) {
+}

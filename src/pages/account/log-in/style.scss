@@ -1,0 +1,62 @@
+@import '../../../assets/scss/custom/variables';
+
+.logIn {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+.container {
+    display: flex;
+    height: 100vh;
+    background-image: url(../../../assets/images/login/background-dep-5.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px 50px 50px 50px;
+    @media screen and (max-width: 500px) {
+        padding: 0
+        
+    }
+}
+.welcome {
+    background-image: url(../../../assets/images/login/background-dep-2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+.container .ant-btn {
+    padding: 0px 5px;
+}
+.log-in {
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    background-image: url(../../../assets/images/login/pexels-karolina-grabowska-4464438.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.title-description {
+    font-weight: 700;
+    text-align: center;
+    font-size: 15px;
+    font-family: Hack, sans-serif;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #000, #fff, #000);
+    letter-spacing: 5px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 80%;
+    animation: abc 5s linear infinite;
+}
+@keyframes abc {
+    0% {
+        background-position-x: -500%;
+    }
+    100% {
+        background-position-x: 500%;
+    }
+}

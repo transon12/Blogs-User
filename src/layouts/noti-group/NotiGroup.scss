@@ -1,0 +1,15 @@
+.noti-group {
+    display: flex;
+    line-height: 46px;
+    background-color: inherit;
+    color: inherit;
+    
+    .item {
+        padding: 0 12px;
+        cursor: pointer;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.025);
+        }
+    }
+}

@@ -1,0 +1,21 @@
+.button_signin:hover {
+    color: #40a9ff;
+    background-color: white;
+}
+.button_signin {
+    border: 1px solid;
+    border-radius: 12px;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    display: flex;
+
+    .anticon svg {
+        font-size: 40px;
+        margin-right: 5px;
+    }
+}
+.buttonText {
+    font-size: 20px;
+}

@@ -1,0 +1,13 @@
+services:
+  nginx-react:
+    #container name se hien thi khi go lenh docker container ls
+    container_name: ngixreactapp
+    # build dua vao file Dockerfile nam trong folder kokoromi-fe-admin
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # cong export de cho client co the ket noi dc
+    ports:
+      - 3000:80
+    environment:
+      NODE_ENV: production

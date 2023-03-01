@@ -1,0 +1,38 @@
+@import '../custom/variables';
+
+.ant-layout-header {
+    padding: 0px;
+    height: 48px;
+    line-height: 48px;
+    width: 100%;
+    z-index: 19 !important;
+    box-shadow: 0 4px 4px 0 rgba(107, 108, 109, 0.12);
+    background: $top-nav;
+    color: $text;
+    .top-nav-header-main {
+        display: flex;
+        height: 100%;
+        padding: 0;
+        background: $top-nav;
+        .top-nav-header-main-left {
+            display: flex;
+            min-width: 100;
+        }
+        .top-nav-header-main-menu {
+            flex: 1 1 0%;
+            background-color: inherit;
+        }
+        .top-nav-header-main-right {
+            padding-right: 10px;
+        }
+    }
+}
+
+.top-nav-header-main {
+    .ant-menu-horizontal,
+    .top-nav-header-main-left {
+        border: none;
+        background-color: inherit;
+        color: inherit;
+    }
+}
