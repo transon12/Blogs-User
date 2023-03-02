@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.register_nav3 {
+    width: 100%;
+    border: 1px solid #eaeaea;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.register_nav3_icon-alen {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.register_nav3_icon-alen img{
+    width: 10%;
+}
+.register_nav3_alen-hepl {
+    display: flex;
+    align-items: center;
+}
+.register_nav3_icon-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.register_nav3_icon-logo img {
+    width: 70%;
+}
+.register_nav3_alen-hepl .register_nav3_alen {
+    font-size: 1.5vw;
+    color: black;
+    font-weight: 500;
+    margin-left: 15%;
+}
+.register_nav3_alen-hepl .register_nav3_hepl {
+    font-size: 1.5vw;
+    padding-left: 2%;
+    color: black;
+    font-weight: 700;
+}
+
+.register_nav3_login-registe {
+    display: flex;
+    margin-top: 1%;
+    padding-bottom: 1%;
+    width: 20%;
+    gap: 15px;
+    align-items: center;
+}
+.register_nav3_resetto1 .register_nav3_register {
+    color: white;
+    width: 90px;
+    height: 40px;
+    display: flex;
+    font-size: 1.2vw;
+    background-color: #f48023;
+    border-radius: 5%;
+    padding: 1% 5% 2% 5%;
+    align-items: center;
+    border: none;
+}
+.register_nav3_resetto2 .register_nav3_loginpage {
+    width: 90px;
+    height: 40px;
+    border: none;
+    font-size: 1.2vw;
+    border-radius: 5%;
+    background-color: #eaeaea;
+    color: #1682fd;
+    padding: 1% 5% 2% 5%;
+}
+
+
+.register_form_user_image{
+    display: flex;
+    background-color: #F2F2F2;
+}
+.register_form_user{
+    /* border: 1px solid black; */
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 25%;
+    
+}
+.register_form_user h2{
+    text-align: center;
+}
+.register_form_user p{
+    margin-top: 4%;
+}
+.register_form_input_user{
+    
+    background-color: white;
+    margin-top: 2%;
+    
+}
+.register_form_input_user input{
+    width: 100%;
+    height: 35px; 
+    border: none;  
+}
+.register_form_input_gender{
+    background-color: white;
+    margin-top: 2%;
+    
+}
+.register_form_input_gender form{
+    padding-left: 15%;
+}
+.register_form_input_gender p{
+    color: #837d7d;
+    padding: 2%;
+}
+
+.register_form_input_user p{
+color: #837d7d;
+padding: 2%;
+}
+.register_button_user{
+    text-align: center;
+    margin-top: 10%;
+}
+.register_button_user button{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #FFCE2C;
+    border: none;
+}
+.register_button_user h3{
+    color: white;
+}
+
+
+
+.register_form_image{
+    margin-left: 17%;
+    width: 60%;
+    height: 100%;
+    /* border: 1px solid black; */
+}
+@media (max-width: 900px){
+    .register, .register_nav3, .register_form_user_image, .register_form_user, .register_form_image, .register_form_input_user{
+        width: 100%;
+    }
+}
+    
+
+
