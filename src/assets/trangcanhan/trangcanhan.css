@@ -1,0 +1,304 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.trangcanhan{
+    width: 100%;
+    height: 100%;
+}
+.narbar-form{
+    border: 1px solid black;
+    width: 100%;
+    border: none;
+    display: flex;
+    box-shadow: 0px 6px 17px 2px rgba(0,0,0,0.55);
+   -webkit-box-shadow: 0px 6px 17px 2px rgba(0,0,0,0.55);
+   -moz-box-shadow: 0px 6px 17px 2px rgba(0,0,0,0.55);
+    margin-top: 1%;
+}
+.narbar-img{
+   width: 50%;
+   text-align: center;
+   display: flex;
+}
+.narbar-img img{
+    width: 10%; 
+    margin-left: 10%;
+}
+.logo-icon{
+    width: 45%;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+.logo-icon img{
+    width: 5%;
+    height: 30px;
+    border-radius: 50%;
+}
+.logo-icon button{
+   background-color: #343a40;
+   font-size: 1.2vw;
+   color: white;
+   border: none;
+   padding: 1% 0% 1% 0%;
+    border-radius: 5px;
+}
+.logo-icon .apps-out{
+    font-size: 2vw;
+    color: #343a40;
+}
+ .button-icon{
+    display: flex;
+}
+
+.trangchu-form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.trang-form{
+    width: 30%;
+    border: 1px solid rgb(182, 175, 175);
+    border-top: none;
+    border-bottom: none;
+    margin-top: 1%;
+}
+.chur-form{
+    margin-top: 10%;
+    padding-bottom: 2%;
+    display: flex;
+    margin-left: 15%;
+    align-items: center;
+    font-size: 1.3vw;
+    gap: 10px;
+}
+.chur-form label{
+    font-weight: 500;
+}
+.thongtin-form{
+    display: flex;
+    margin-left: 5%;
+    margin-top: 5%;
+    padding-bottom: 2%;
+    justify-content: space-around;
+}
+.thongtin-icon{
+    display: flex;
+    align-items: center;
+    font-size: 1.3vw;
+    gap: 10px;
+}
+.thongtin-icon label{
+    font-weight: 500;
+}
+.col-thong{
+   margin-left: 25%;
+   margin-top: 5%;
+}
+.tong-lien-form{
+    padding-bottom: 9%;
+    display: flex;
+    align-items: center;
+    font-size: 1.3vw;
+
+    gap: 10px;
+}
+.tong-lien-form label{
+    font-weight: 500;
+}
+.thong-lien-icon{
+    padding-bottom: 9%;
+    display: flex;
+    align-items: center;
+    font-size: 1.3vw;
+
+    gap: 10px;
+}
+.thong-lien-icon label{
+    font-weight: 500;
+
+}
+.icon-cheveron{
+    margin-left: 8%;
+}
+.email-form{
+    padding-bottom: 6%;
+    display: flex;
+    align-items: center;
+    font-size: 1.3vw;
+    gap: 10px;
+}
+.email-form label{
+    font-weight: 500;
+
+}
+.baomat-form{
+    display: flex;
+    margin-left: 5%;
+    margin-top: 3%;
+    padding-bottom: 2%;
+    justify-content: space-around;
+}
+.bao-mat{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3vw;
+}
+.bao-mat label{
+    font-weight: 500;
+}
+.icon2{
+    margin-left: 30%;
+}
+.col-form-key{
+    margin-left: 25%;
+    margin-top: 5%;
+}
+.matkhau-taikhoan{
+    display: flex;
+    padding-bottom: 9%;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3vw;
+    font-weight: 500;
+}
+.lien-ket{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3vw;
+    padding-bottom: 6%;
+    font-weight: 500;
+}
+.application-caidat{
+    display: flex;
+    margin-left: 5%;
+    margin-top: 3%;
+    padding-bottom: 2%;
+    justify-content: space-around;
+    
+}
+.desktop{
+    display: flex;
+    align-items: center;
+    
+    gap: 10px;
+    font-weight: 500;
+    font-size: 1.3vw;
+}
+.oauth-cation{
+    margin-left: 25%;
+    margin-top: 5%;
+}
+.application-icon{
+    display: flex;
+    padding-bottom: 7%;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 1.3vw;
+}
+.baomat-truycap{
+    display: flex;
+    padding-bottom: 7%;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 1.3vw;   
+}
+.Oauth-quyen{
+    display: flex;
+    padding-bottom: 7%;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 1.3vw;  
+    
+}
+.quyryti-form{
+    border-bottom: 1px solid rgb(182, 175, 175);
+}
+.thugon-form{
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+    margin-left: 14%;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 1.3vw;  
+}
+.trangchu-form2{
+    width: 50%;
+    border: 1px solid black;
+    margin-top: 5%;
+    margin: auto;
+}
+.img-thaydoi{
+    width: 20%;
+    margin: auto;
+}
+.img-thaydoi img{
+    width: 80%;
+    border-radius: 50%;
+    height: 100px;
+}
+.img-thaydoi button{
+   padding: 0% 20% 0% 20%;
+   font-size: 1vw;
+   margin-left: 2%;
+   font-weight: 300;
+   color: white;
+   background-color: #343a40;
+   border: none;
+}
+.thongtin-canhan{
+    width: 90%;
+    margin: auto;
+    margin-top: 2%;
+}
+.thongtin-canhan p{
+    font-size: 1.2vw;
+    font-weight: 400;
+}
+.tentk-input{
+    width: 90%;
+    margin: auto;
+    padding-bottom: 2%;
+}
+.tentk-input input{
+    padding: 1% 70% 1% 1%;
+    width: 100%;
+}
+.tentk-input p {
+    font-size: 1.2vw;
+    font-weight: 500;
+}
+.tenht-input{
+    width: 90%;
+    margin: auto;
+}
+.tenht-input input{
+    padding: 1% 70% 1% 1%;
+    width: 100%;
+}
+.tenht-input p {
+    font-size: 1.2vw;
+    font-weight: 500;
+}
+.form-ns-gt{
+    width: 90%;
+    margin: auto;
+    display: flex;
+}
+.ngay-sinh{
+    width: 50%;
+}
+.ngay-sinh input{
+    padding: 1% 35% 1% 1%;
+
+}
