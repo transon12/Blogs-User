@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 import { ROLES } from '../constants/me';
-
 // lazy load all the views
 
 // auth
@@ -14,7 +13,7 @@ const ForgetPassword = React.lazy(() => import('../pages/account/fotgot-password
 const Confirm = React.lazy(() => import('../pages/account/confirm/Confirm'));
 const ChangePass = React.lazy(() => import('../pages/account/change-password/ChangePass'));
 const Information = React.lazy(() => import('../pages/account/information/Information'));
-
+const Register = React.lazy(() => import('../pages/account/register/Register'));
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
 
@@ -34,14 +33,14 @@ const dashboardRoutes = [
         component: Dashboard,
         // route: PrivateRoute,
         route: Route,
-        roles: [ROLES.DLEAD]
+        roles: [ROLES.DLEAD],
     },
     {
         path: '/account',
         name: 'Acount',
         component: Information,
         route: PrivateRoute,
-        roles: [ROLES.MEMBER, ROLES.DLEAD]
+        roles: [ROLES.MEMBER, ROLES.DLEAD],
     },
 ];
 
@@ -88,6 +87,7 @@ const authRoutes = [
         component: Login,
         route: Route,
     },
+    { path: '/register', name: 'Register', component: Register, route: Route },
     {
         path: '/account/logout',
         name: 'Logout',
