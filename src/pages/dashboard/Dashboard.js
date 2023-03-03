@@ -1,8 +1,11 @@
 import React from 'react'
+import Individual from '../individual/Individual'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <Individual/>
+    </div>
   )
 }
 

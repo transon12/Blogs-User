@@ -15,18 +15,18 @@ const PrivateRoute = ({ component: Component, roles, ...rest }) => {
         <Route
             {...rest}
             render={(props) => {
-                if (api.isUserAuthenticated() === false) {
-                    // not logged in so redirect to login page with the return url
-                    return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
-                }
+                // if (api.isUserAuthenticated() === false) {
+                //     // not logged in so redirect to login page with the return url
+                //     return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
+                // }
 
                 const loggedInUser = api.getLoggedInUser();
-
+                return <Redirect to={{ pathname: '/dashboard' }} />
                 // check if route is restricted by role
-                if (roles && roles.indexOf(loggedInUser.role) === -1) {
-                    // role not authorised so redirect to home page
-                    return <Redirect to={{ pathname: '/dashboard' }} />;
-                }
+                // if (roles && roles.indexOf(loggedInUser.role) === -1) {
+                //     // role not authorised so redirect to home page
+                //     return <Redirect to={{ pathname: '/dashboard' }} />;
+                // }
                 // authorised so return component
                 return <Component {...props} />;
             }}
