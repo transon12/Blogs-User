@@ -5,11 +5,11 @@ import './style.scss';
 const Logo = () => {
     return (
         <>
-            <Row>
+            {/* <Row>
                 <Col className="logo">
                     <h1>LSM</h1>
                 </Col>
-            </Row>
+            </Row> */}
         </>
     );
 };
