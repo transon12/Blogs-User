@@ -1,89 +1,134 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
-import { Form, Col, Row } from 'antd';
-//actions
-import { resetAuth, loginUser } from '../../../redux/actions';
-import { useQuery } from '../../../hooks';
 import './style.scss';
-import LoginButton from '../login-google/LoginButton';
-import Lottie from 'react-lottie';
-import wellcomJson from './../../../assets/animation/welcome.json';
+import React, { useState } from 'react';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Form, Input } from 'antd';
+import image from '../../../assets/images/login/Image.png';
 
-const Login = () => {
-    const { t } = useTranslation();
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const query = useQuery();
-    const next = query.get('next');
-
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: wellcomJson,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
+function Login() {
+    const [form] = Form.useForm();
+    const [, forceUpdate] = useState({});
+    const data = [
+        {
+            id: 1,
+            name: 'nguyen truong an',
+            password: '123456',
         },
+        {
+            id: 2,
+            name: 'dang tan dung',
+            password: '123456',
+        },
+    ];
+    const onFinish = (event) => {
+        console.log(event);
+        let danhap = event.name;
+        let danhapmk = event.password;
+        let datalist = data.find((e) => {
+            return e.name === danhap && e.password === danhapmk;
+        });
+        if (datalist) {
+            return alert('dang nhap thang cong');
+        }
     };
-
-    useEffect(() => {
-        dispatch(resetAuth());
-    }, [dispatch]);
-
-    const { loading, userLoggedIn, user, error } = useSelector((state) => ({
-        loading: state.Auth.loading,
-        user: state.Auth.user,
-        error: state.Auth.error,
-        userLoggedIn: state.Auth.userLoggedIn,
-    }));
-
-    /*
-    handle form submission
-    */
-    const onFinish = (formData) => {
-        dispatch(loginUser(formData['username'], formData['password']));
-    };
-
-    const onFinishFailed = (errorInfo) => {};
-
     return (
-        <div className="container">
-            <div className="logIn">
-                {userLoggedIn || user ? <Redirect to={next ? next : '/me-list'}></Redirect> : null}
-                <Row style={{ height: '100%' }}>
-                    <Col xl={16} xs={0} justify="center" align="middle" className="welcome">
-                        <div>
-                            <Lottie width={'100%'} options={defaultOptions} />
-                            {/* <p className="text__40B_linear_gradient_welcome">{t('Welcome back!')}</p> */}
-                            {/*  <p className="title-description">
-                                {t('You can sign in to access with your existing account')}
-                            </p> */}
+        <>
+            <div className="login-form">
+                <div className="narbar">
+                    <div className="icon-alen">
+                        <img src="./Vector.png" alt="" />
+                        <div className="alen-hepl">
+                            <label className="alen">alem</label>
+                            <label className="hepl">help</label>
                         </div>
-                    </Col>
-                    <Col xl={8} xs={24} justify="center" align="middle" className="log-in">
-                        <Form
-                            name="basic"
-                            initialValues={{ remember: true }}
-                            onFinish={onFinish}
-                            onFinishFailed={onFinishFailed}
-                            autoComplete="off"
-                            style={{ width: '100%' }}>
-                            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                <Form.Item>
-                                    <p className="text__40B_linear_gradient">{t('Sign In')}</p>
+                    </div>
+                    <div className="login-registe">
+                        <div className="resetto1">
+                            <button className="register">
+                                <ion-icon name="person-outline" />
+                                Register
+                            </button>
+                        </div>
+                        <div className="resetto2">
+                            <button className="loginpage">Login</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="form-tong">
+                    <div className="wew-login">
+                        <div className="from-nho1">
+                            <div className="we-mid">
+                                <p className="missed-you">We've Missed You!</p>
+                                <p className="more-than">
+                                    More than 150 questions are waiting for your wise suggestions
+                                </p>
+                            </div>
+                            <Form form={form} name="horizontal_login" layout="inline" onFinish={onFinish}>
+                                <Form.Item
+                                    name="name"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your username!',
+                                        },
+                                    ]}>
+                                    <Input
+                                        name="username"
+                                        prefix={<UserOutlined className="site-form-item-icon" />}
+                                        placeholder="Username"
+                                    />
                                 </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your password!',
+                                        },
+                                    ]}>
+                                    <Input
+                                        name="password"
+                                        prefix={<LockOutlined className="site-form-item-icon" />}
+                                        type="password"
+                                        placeholder="Password"
+                                    />
+                                </Form.Item>
+                                <Form.Item shouldUpdate>
+                                    {() => (
+                                        <Button
+                                            type="primary"
+                                            htmlType="submit"
+                                            disabled={
+                                                !form.isFieldsTouched(true) ||
+                                                !!form.getFieldsError().filter(({ errors }) => errors.length).length
+                                            }>
+                                            Log in
+                                        </Button>
+                                    )}
+                                </Form.Item>
+                            </Form>
+                            <div className="google-facebook">
+                                <div className="google">
+                                    <button className="button-google">
+                                        <ion-icon className="logo-google" name="logo-google" />
+                                        Google
+                                    </button>
+                                </div>
+                                <div className="facebook">
+                                    <button className="button-facebook">
+                                        Facebook
+                                        <ion-icon className="logo-facebook" name="logo-facebook" />
+                                    </button>
+                                </div>
                             </div>
-
-                            <div className="button-signin-with-google">
-                                <LoginButton />
-                            </div>
-                        </Form>
-                    </Col>
-                </Row>
+                        </div>
+                    </div>
+                    <div className="imagee-img">
+                        <img src={image} alt="" />
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
-};
+}
 
 export default Login;
