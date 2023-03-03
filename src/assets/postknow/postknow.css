@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.post-know{
+    width: 100%;
+    height: 625px;
+    border: 1px solid black;
+}
+
+.post-know-1{
+    width: 100%;
+    height: 13%;
+    border: 1px solid red;
+    display: flex;
+}
+.post-know-1-1{
+    width: 22%;
+    height: 100%;
+    border: 1px solid blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.post-logo{
+    width: 200px;
+    height: 50px;
+    /* border: 1px solid black; */
+}
+.post-logo img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.post-know-1-2{
+    width: 53%;
+    height: 100%;
+    border: 1px solid orange;
+    display: flex;
+    align-items: center;
+}
+.post-know-1-2 h2{
+    margin-left: 5%;
+}
+
+
+
+.post-know-1-3{
+    width: 25%;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.post-know-1-3 button{
+    width: 150px;
+    height: 45px;
+    border-radius: 5px;
+    background: orange;
+    color: white;
+    border: none;
+}
+.post-know-1-3 i{
+    font-size: 25px;
+    
+}
+.post-know-1-3 img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+/***********************************************/
+
+
+.post-know-2{
+    width: 100%;
+    height: 87%;
+    border: 1px solid red;
+    display: flex;
+}
+.post-know-2-1{
+    width: 22%;
+    height: 100%;
+    border: 1px solid purple;
+}
+.post-menu{
+    width: 100%;
+    height: 70px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 20px;
+}
+.post-menu p{
+    margin-left: 10px;
+}
+.post-know-2-2{
+    width: 78%;
+    height: 100%;
+    border: 1px solid rgb(14, 13, 13);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.post-in{
+    width: 95%;
+    height: 90%;
+    border: 1px solid rgb(14, 13, 13);
+    display: flex;
+    justify-content: space-between;
+}
+
+.posts{
+    width: 72%;
+    height: 85%;
+    border: 1px solid red;
+}
+
+.extend{
+    width: 24%;
+    height: 50%;
+    border: 1px solid black;
+}
+
+
+
+
+
+
+
+.posts{
+    
+}
