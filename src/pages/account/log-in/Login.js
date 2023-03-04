@@ -1,12 +1,18 @@
 import './style.scss';
 import React, { useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input } from 'antd';
 import image from '../../../assets/images/login/Image.png';
+import image1 from '../../../assets/images/login/Vector.png';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 
 function Login() {
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
+    const [username, setUserName] = useState();
+    const [useremail, setUserEmail] = useState();
+    const [profile, setProfile] = useState(null);
     const data = [
         {
             id: 1,
@@ -19,23 +25,31 @@ function Login() {
             password: '123456',
         },
     ];
-    const onFinish = (event) => {
-        console.log(event);
-        let danhap = event.name;
-        let danhapmk = event.password;
-        let datalist = data.find((e) => {
-            return e.name === danhap && e.password === danhapmk;
-        });
-        if (datalist) {
-            return alert('dang nhap thang cong');
-        }
+
+    const pass = (googleData) => {
+        console.log(googleData);
+        setUserName(googleData.profileOnj.name);
     };
+
+    const fail = (result) => {
+        console.log(result.error);
+    };
+
+    const responseFacebook = (response) => {
+        console.log(response);
+        setProfile(response.data)
+    };
+    const componentClicked = (result) => {
+        console.log(result.error);
+    };
+
+    const onFinish = (event) => {};
     return (
         <>
             <div className="login-form">
                 <div className="narbar">
                     <div className="icon-alen">
-                        <img src="./Vector.png" alt="" />
+                        <img src={image1} alt="" />
                         <div className="alen-hepl">
                             <label className="alen">alem</label>
                             <label className="hepl">help</label>
@@ -62,17 +76,23 @@ function Login() {
                                     More than 150 questions are waiting for your wise suggestions
                                 </p>
                             </div>
-                            <Form form={form} name="horizontal_login" layout="inline" onFinish={onFinish}>
+                            <Form
+                                name="normal_login"
+                                className="login-form"
+                                initialValues={{
+                                    remember: true,
+                                }}
+                                onFinish={onFinish}>
                                 <Form.Item
-                                    name="name"
+                                    name="username"
+                                    className="form-chu1"
                                     rules={[
                                         {
                                             required: true,
-                                            message: 'Please input your username!',
+                                            message: 'Please input your Username!',
                                         },
                                     ]}>
                                     <Input
-                                        name="username"
                                         prefix={<UserOutlined className="site-form-item-icon" />}
                                         placeholder="Username"
                                     />
@@ -82,42 +102,42 @@ function Login() {
                                     rules={[
                                         {
                                             required: true,
-                                            message: 'Please input your password!',
+                                            message: 'Please input your Password!',
                                         },
                                     ]}>
                                     <Input
-                                        name="password"
                                         prefix={<LockOutlined className="site-form-item-icon" />}
                                         type="password"
                                         placeholder="Password"
                                     />
                                 </Form.Item>
-                                <Form.Item shouldUpdate>
-                                    {() => (
-                                        <Button
-                                            type="primary"
-                                            htmlType="submit"
-                                            disabled={
-                                                !form.isFieldsTouched(true) ||
-                                                !!form.getFieldsError().filter(({ errors }) => errors.length).length
-                                            }>
-                                            Log in
-                                        </Button>
-                                    )}
+                                <Form.Item>
+                                    <Button type="primary" htmlType="submit" className="login-form-button">
+                                        Log in
+                                    </Button>
                                 </Form.Item>
                             </Form>
                             <div className="google-facebook">
                                 <div className="google">
-                                    <button className="button-google">
-                                        <ion-icon className="logo-google" name="logo-google" />
-                                        Google
-                                    </button>
+                                    <GoogleLogin className='googlelogin-fomr'
+                                        clientId="766994831553-8caj8iuej577hkfsnj642s5hkvg10h29.apps.googleusercontent.com"
+                                        buttonText="Google"
+                                        onSuccess={pass}
+                                        onFailure={fail}
+                                        cookiePolicy={'single_host_origin'}
+                                    />
+                                    ,
                                 </div>
                                 <div className="facebook">
-                                    <button className="button-facebook">
-                                        Facebook
-                                        <ion-icon className="logo-facebook" name="logo-facebook" />
-                                    </button>
+                                    <FacebookLogin
+                                        appId="741537744233850"
+                                        autoLoad={true}
+                                        fields="name,email,picture"
+                                        callback={responseFacebook}
+                                        cssClass="my-facebook-button-class"
+                                        icon ="fa-facebook"
+                                    />
+                                    ,
                                 </div>
                             </div>
                         </div>
