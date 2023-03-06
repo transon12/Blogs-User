@@ -45,7 +45,6 @@
     color: black;
     font-weight: 700;
 }
-
 .login-registe {
     display: flex;
     margin-top: 1%;
@@ -110,10 +109,29 @@
 }
 .facebook{
     width: 50%;
-    position: relative;
+}
+.google{
+    width: 50%;
+}
+.google .ionicon {
+    font-size: 1vw;
+}
+.google button{
+    padding: 7% 5% 7% 5%;
+    background-color: #f0f3f7;
+    border-radius: 5px;
+    font-weight: 500;
+    color: rgb(91, 136, 233);
+    border: none;
+    gap: 5px;
+    justify-content: space-evenly;
+    width: 80%;
+    font-size: 1vw;
+   display: flex;
+   align-items: center;
 }
 .facebook button{
-    padding: 1% 5% 1% 5%;
+    padding: 0% 5% 0% 5%;
     background-color: #f0f3f7;
     border-radius: 5px;
     font-weight: 500;
@@ -152,6 +170,12 @@
         display: flex;
         flex-direction: column; 
          align-items: center; 
+    }
+    .wew-login{
+        width: 100%;
+    }
+    .imagee-img{
+        width: 100%;
     }
     .narbar{
       display: none;

@@ -6,13 +6,20 @@ import image from '../../../assets/images/login/Image.png';
 import image1 from '../../../assets/images/login/Vector.png';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { responseSuccess } from '../../../redux/login/actions';
+import { responseLogin } from '../../../redux/login/actions'
 function Login() {
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
     const [username, setUserName] = useState();
     const [useremail, setUserEmail] = useState();
     const [profile, setProfile] = useState(null);
+
+    const dispatch = useDispatch();
+    const userData = useSelector((state) => state.Login.userInformation);
+    console.log(userData);
+
     const data = [
         {
             id: 1,
@@ -37,13 +44,18 @@ function Login() {
 
     const responseFacebook = (response) => {
         console.log(response);
-        setProfile(response.data)
+        setProfile(response.data);
+        dispatch(responseSuccess({ response }));
     };
     const componentClicked = (result) => {
         console.log(result.error);
     };
 
-    const onFinish = (event) => {};
+    const onFinish = (event) =>{
+        console.log(event);
+        dispatch(responseLogin({ event }));
+    }
+
     return (
         <>
             <div className="login-form">
@@ -76,7 +88,8 @@ function Login() {
                                     More than 150 questions are waiting for your wise suggestions
                                 </p>
                             </div>
-                            <Form
+                            <Form 
+                               
                                 name="normal_login"
                                 className="login-form"
                                 initialValues={{
@@ -119,9 +132,15 @@ function Login() {
                             </Form>
                             <div className="google-facebook">
                                 <div className="google">
-                                    <GoogleLogin className='googlelogin-fomr'
-                                        clientId="766994831553-8caj8iuej577hkfsnj642s5hkvg10h29.apps.googleusercontent.com"
-                                        buttonText="Google"
+                                    <GoogleLogin
+                                        clientId="766994831553-kmvo31pkvvqgco22e7jld039jvfn5slo.apps.googleusercontent.com"
+                                        render={(renderProps) => (
+                                            <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                                                <ion-icon className="google-loginform" name="logo-google"></ion-icon>
+                                                Google
+                                            </button>
+                                        )}
+                                        buttonText="Login"
                                         onSuccess={pass}
                                         onFailure={fail}
                                         cookiePolicy={'single_host_origin'}
@@ -135,7 +154,7 @@ function Login() {
                                         fields="name,email,picture"
                                         callback={responseFacebook}
                                         cssClass="my-facebook-button-class"
-                                        icon ="fa-facebook"
+                                        icon="fa-facebook"
                                     />
                                     ,
                                 </div>
