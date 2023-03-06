@@ -1,10 +1,14 @@
 import React from 'react'
 import Individual from '../individual/Individual'
+import UpdatePassword from '../update-password/UpdatePassword'
+import UpdateUser from '../update-user/UpdateUser'
 
 const Dashboard = () => {
   return (
     <div>
-      <Individual/>
+      {/* <Individual/> */}
+    {/* <UpdatePassword/> */}
+    <UpdateUser/>
     </div>
   )
 }
