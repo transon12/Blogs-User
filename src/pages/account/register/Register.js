@@ -3,9 +3,13 @@ import { useState } from 'react';
 import './register.scss';
 import img_2 from '../../../assets/images/register/Image (1).png';
 import logo from '../../../assets/images/register/icon.png';
-import { FacebookOutlined, GooglePlusOutlined } from '@ant-design/icons';
+import * as yup from 'yup';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
+import { connect } from 'react-redux';
+import { registerFacebook, registerGoogle, registerbasic } from '../../../redux/redux-register/actions';
+import { useDispatch, useSelector } from 'react-redux';
+// import responsiveObserve from 'antd/lib/_util/responsiveObserve';
 
 const { Option } = Select;
 const residences = [
@@ -72,10 +76,14 @@ const tailFormItemLayout = {
         },
     },
 };
+
 const App = () => {
+    const { user } = useSelector((state) =>state.reducers);
+    console.log(user);
+    const dispatch = useDispatch();
     const [form] = Form.useForm();
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
+        dispatch(registerbasic(values));
     };
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
@@ -115,8 +123,9 @@ const App = () => {
     const [userData, setUserData] = useState(null);
 
     const responseFacebook = (response) => {
+        dispatch(registerFacebook(response));
         console.log(response);
-        setUserData(response);
+        // setUserData(response);
     };
 
     const [userDataGoogle, setUserDataGoogle] = useState(null);
@@ -125,6 +134,23 @@ const App = () => {
         console.log(response);
         setUserDataGoogle(response.profileObj);
     };
+
+    const schema = yup.object().shape({
+        phoneNumber: yup
+            .string()
+            .required('Số điện thoại là bắt buộc')
+            .matches(/^[0-9]+$/, 'Số điện thoại chỉ chứa các ký tự số')
+            .min(10, 'Số điện thoại phải có ít nhất 10 số')
+            .max(10, 'Số điện thoại không được vượt quá 10 số'),
+    });
+    schema
+        .validate({ phoneNumber: '0123456789' })
+        .then(() => {
+            console.log('Số điện thoại hợp lệ');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     return (
         <Form
             {...formItemLayout}
@@ -303,7 +329,7 @@ const App = () => {
                             <div className="register_button_user_face_google">
                                 <div className="register_button_user_face">
                                     <FacebookLogin
-                                        appId="YOUR_APP_ID_HERE"
+                                        appId="your-app-id"
                                         autoLoad={false}
                                         fields="name,email,picture"
                                         callback={responseFacebook}
@@ -312,10 +338,11 @@ const App = () => {
 
                                 <div className="register_button_user_google">
                                     <GoogleLogin
-                                        clientId="YOUR_CLIENT_ID_HERE"
+                                        clientId="your-client-id"
                                         buttonText="Login with Google"
                                         onSuccess={responseGoogle}
                                         onFailure={responseGoogle}
+                                        cookiePolicy={'single_host_origin'}
                                     />
                                 </div>
                             </div>
@@ -330,126 +357,3 @@ const App = () => {
     );
 };
 export default App;
-
-// import img_2 from "../../../assets/images/register/Image (1).png";
-// import { FacebookOutlined, GooglePlusOutlined } from '@ant-design/icons';
-// // import { useSelector, useDispatch } from 'react-redux';
-// // import { Redirect, Link } from 'react-router-dom';
-// // import { Button, Alert, Row, Col } from 'react-bootstrap';
-// // import { useTranslation } from 'react-i18next';
-// // import * as yup from 'yup';
-// // import { yupResolver } from '@hookform/resolvers/yup';
-
-// // //actions
-// // import { resetAuth, signupUser } from '../../redux/actions';
-
-// // // components
-// // import { VerticalForm, FormInput } from '../../components/';
-
-// // import AccountLayout from './AccountLayout';
-
-// /* bottom link */
-// // const BottomLink = () => {
-// //     const { t } = useTranslation();
-
-// //     return (
-// //         <Row className="mt-3">
-// //             <Col className="text-center">
-// //                 <p className="text-muted">
-// //                     {t('Already have account?')}{' '}
-// //                     <Link to={'/login'} className="text-muted ms-1">
-// //                         <b>{t('Log In')}</b>
-// //                     </Link>
-// //                 </p>
-// //             </Col>
-// //         </Row>
-// //     );
-// // };
-
-// const Register = () => {
-//     return (
-//         <>
-//             <div className="register">
-//                 <div className="register_nav3">
-//                     <div className="register_nav3_icon-alen">
-//                         <img src={logo} alt="" />
-//                         <div className="register_nav3_alen-hepl">
-//                             <label className="register_nav3_alen">alem</label>
-//                             <label className="register_nav3_hepl">help</label>
-//                         </div>
-//                     </div>
-//                     <div className="register_nav3_login-registe">
-//                         <div className="register_nav3_resetto1">
-//                             <button className="register_nav3_register">Register</button>
-//                         </div>
-//                         <div className="register_nav3_resetto2">
-//                             <button className="register_nav3_loginpage">Login</button>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <div className="register_form_user_image">
-//                     <div className="register_form_user">
-//                         <h2>Join Alem community</h2>
-//                         <p>Get more features and priviliges by joining to the most helpful community</p>
-//                         <div className="register_form_input_user">
-//                             <p>User name</p>
-//                             <input type="text" name="firstname" />
-//                         </div>
-//                         <div className="register_form_input_user">
-//                             <p>Birthday</p>
-//                             <input type="number" name="number" />
-//                             <div id="number-error-message" />
-//                         </div>
-//                         <div className="register_form_input_gender">
-//                             <p>Gender</p>
-//                             <input type="radio" name="gender" defaultValue="male" />
-//                              Male
-//                             <input type="radio" name="gender" defaultValue="female" />
-//                              Female
-//                             <input type="radio" name="gender" defaultValue="other" />
-//                              Other
-//                         </div>
-//                         <div className="register_form_input_user">
-//                             <p>Email</p>
-//                             <input type="text" name="email" />
-//                             <div id="email-error-message" />
-//                         </div>
-//                         <div className="register_form_input_user">
-//                             <p>Password</p>
-//                             <input type="password" name="password" />
-//                             <div id="password-error-message" />
-//                         </div>
-//                         <div className="register_form_input_user">
-//                             <p>Repeat password</p>
-//                             <input type="password" name="password" />
-//                             <div id="password-error-message" />
-//                         </div>
-//                         <div className="register_button_user">
-//                             <button>
-//                                 <h3>REGISTER</h3>
-//                             </button>
-//                         </div>
-//                         <div className="register_button_user_face_google">
-//                             <button className="register_button_user_face">
-//                             <FacebookOutlined />
-//                             <a href='https://www.facebook.com/'>facebook</a>
-
-//                             </button>
-//                             <button className="register_button_user_google">
-//                             <GooglePlusOutlined />
-//                             <a href='https://accounts.google.com/AccountChooser/signinchooser?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser'>
-//                             google
-//                             </a>
-//                             </button>
-//                         </div>
-//                     </div>
-//                     <div className="register_form_image">
-//                         <img src={img_2} width="100%" height="100%" alt="" />
-//                     </div>
-//                 </div>
-//             </div>
-//         </>
-//     );
-// };
-
-// export default Register;

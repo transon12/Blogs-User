@@ -1,0 +1,10 @@
+export const registerActionTypes = {
+    REGISTER_FACEBOOK: '@@register/REGISTER_FACEBOOK',
+    REGISTER_GOOGLE: '@@register/REGISTER_GOOGLE',
+    REGISTER_BASIC: '@@register/REGISTER_BASIC',
+    CHANGE_SIDEBAR_TYPE: '@@register/CHANGE_SIDEBAR_TYPE',
+
+    TOGGLE_RIGHT_SIDEBAR: '@@register/TOGGLE_RIGHT_SIDEBAR',
+    SHOW_RIGHT_SIDEBAR: '@@register/SHOW_RIGHT_SIDEBAR',
+    HIDE_RIGHT_SIDEBAR: '@@register/HIDE_RIGHT_SIDEBAR',
+};
