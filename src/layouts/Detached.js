@@ -7,6 +7,8 @@ import { Layout } from 'antd';
 import useMenu from '../hooks/useMenu';
 import Lottie from 'react-lottie';
 import loadingJson from '../assets/animation/loading.json';
+import MenuTop from './components/menu-top/MenuTop';
+import '../assets/scss/custom/_common.scss'
 
 type VerticalLayoutProps = {
     children?: any,
@@ -43,8 +45,12 @@ const DetachedLayout = ({ children }: VerticalLayoutProps, state: VerticalLayout
         <>
             <Layout>
                 <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-                    <HeaderContent menu={menuCustom} />
+                {/* <Header style={{ position: 'fixed', zIndex: 1}}> */}
+                <HeaderContent menu={menuCustom} />
+                {/* <MenuTop style={{ position: 'fixed', zIndex: 1, width: '100%' }}/> */}
                 </Header>
+            
+                
                 <Content style={{ margin: '24px 16px 0', marginTop: 64 }}>
                     <Suspense fallback={loading()}>{children}</Suspense>
                 </Content>
