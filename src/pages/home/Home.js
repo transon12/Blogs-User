@@ -4,14 +4,17 @@ import Roadmap from './roadmap'
 import Course from './course'
 import Tag from './tag'
 
+
 const Home = () => {
     return (
         <>
-            {/* Search & filter */}
+
             
-            <Roadmap />
+            {/* Search & filter */}
+           
+            {/* <Roadmap />
             <Course />
-            <Tag />
+            <Tag /> */}
         </>
     )
 }
