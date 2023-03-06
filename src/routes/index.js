@@ -14,9 +14,10 @@ const ForgetPassword = React.lazy(() => import('../pages/account/fotgot-password
 const Confirm = React.lazy(() => import('../pages/account/confirm/Confirm'));
 const ChangePass = React.lazy(() => import('../pages/account/change-password/ChangePass'));
 const Information = React.lazy(() => import('../pages/account/information/Information'));
-
+const Index = React.lazy(() => import('../pages/dashboard/Dashboard.js'))
+const IndexUser = React.lazy(()=> import('../pages/dashboard/DashboardUser'))
 //Dashboard
-const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
+// const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
 
 // root routes
 const rootRoute = {
@@ -26,16 +27,17 @@ const rootRoute = {
     route: PrivateRoute,
 };
 
+
 // dashboards
 const dashboardRoutes = [
-    {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: Dashboard,
-        // route: PrivateRoute,
-        route: Route,
-        roles: [ROLES.DLEAD]
-    },
+    // {
+    //     path: '/dashboard',
+    //     name: 'Dashboard',
+    //     component: Dashboard,
+    //     // route: PrivateRoute,
+    //     route: Route,
+    //     roles: [ROLES.DLEAD]
+    // },
     {
         path: '/account',
         name: 'Acount',
@@ -43,6 +45,35 @@ const dashboardRoutes = [
         route: PrivateRoute,
         roles: [ROLES.MEMBER, ROLES.DLEAD]
     },
+    {
+        path: '/index',
+        name: 'Index',
+        component: Index,
+        route: Route,
+        roles: [ROLES.DLEAD]
+    },
+    {
+        path: '/homepage',
+        name: 'Homepage',
+        component: IndexUser,
+        route: Route,
+        roles: [ROLES.DLEAD]
+    },
+    {
+        path: '/yourquestion',
+        name: 'Homepage',
+        component: IndexUser,
+        route: Route,
+        roles: [ROLES.DLEAD]
+    },
+    {
+        path: '/youranswer',
+        name: 'Homepage',
+        component: IndexUser,
+        route: Route,
+        roles: [ROLES.DLEAD]
+    },
+
 ];
 
 const otherPublicRoutes = [

@@ -45,9 +45,7 @@ const DetachedLayout = ({ children }: VerticalLayoutProps, state: VerticalLayout
         <>
             <Layout>
                 <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-                {/* <Header style={{ position: 'fixed', zIndex: 1}}> */}
                 <HeaderContent menu={menuCustom} />
-                {/* <MenuTop style={{ position: 'fixed', zIndex: 1, width: '100%' }}/> */}
                 </Header>
             
                 
