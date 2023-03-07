@@ -125,7 +125,7 @@ const App = () => {
     const responseFacebook = (response) => {
         dispatch(registerFacebook(response));
         console.log(response);
-        // setUserData(response);
+        
     };
 
     const [userDataGoogle, setUserDataGoogle] = useState(null);
