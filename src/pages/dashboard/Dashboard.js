@@ -4,8 +4,7 @@ import LeftSidebar from '../../layouts/components/menu-top/left-side-bar/LeftSid
 const Dashboard = () => {
     return (
         <>
-            
-            <LeftSidebar/>
+           <div>aaaaaaaaaaaaa</div>
         </>
     );
 };
