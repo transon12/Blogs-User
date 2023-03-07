@@ -92,8 +92,9 @@
                             width: 100%;
                             border-radius: 5px;
                             border: 1px solid gray;
-                            background: rgb(187, 187, 187);
-                            color: #e4e1e1;
+                            background: rgb(245,247,250);
+                            color: rgb(218,221,227);
+                            outline: none;
                         }
                     }
                     .update-Content-1-2-2{
@@ -117,8 +118,8 @@
                             }
                             input{
                                 width: 98%;
-                                border-radius: 5px;
-                                border: 1px solid gray;
+                                // border-radius: 5px;
+                                // border: 1px solid gray;
                             }
                         }
                         .user-sex{
@@ -134,6 +135,7 @@
                     .update-Content-1-2-4{
                         display: flex;
                         justify-content: flex-end;
+                        margin-top: 20px;
                         button{
                             margin: 5px;
                             padding: 3px 20px;
