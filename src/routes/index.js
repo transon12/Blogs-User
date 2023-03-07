@@ -14,6 +14,7 @@ const ForgetPassword = React.lazy(() => import('../pages/account/fotgot-password
 const Confirm = React.lazy(() => import('../pages/account/confirm/Confirm'));
 const ChangePass = React.lazy(() => import('../pages/account/change-password/ChangePass'));
 const Information = React.lazy(() => import('../pages/account/information/Information'));
+const Add_news = React.lazy(() => import('../pages/add_news/Add_news'));
 
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
@@ -28,6 +29,14 @@ const rootRoute = {
 
 // dashboards
 const dashboardRoutes = [
+    {
+        path: '/Add_news',
+        name: 'Add_news',
+        component: Add_news,
+        // route: PrivateRoute,
+        route: Route,
+        roles: [ROLES.DLEAD]
+    },
     {
         path: '/dashboard',
         name: 'Dashboard',
