@@ -4,7 +4,8 @@ import './LeftSidebar.scss'
 
 function LeftSidebar() {
     return (
-        <div >
+        <>
+            <Col span={5}  >
                 <div className='index_navbar--container'>
                 <div>
                     <div className="index_navbar--btn">
@@ -27,7 +28,9 @@ function LeftSidebar() {
                         <div><ion-icon name="logo-facebook"></ion-icon></div>
                     </div>
                 </div>
-        </div>
+                
+            </Col>
+        </>
     );
 }
 

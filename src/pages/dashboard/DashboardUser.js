@@ -1,13 +1,13 @@
 import React from 'react';
 import LeftSidebaruser from '../../layouts/components/left-side-bar-user/LeftSidebaruser';
 import MenuTop from '../../layouts/components/menu-top/MenuTop';
-const Dashboard = () => {
+import Po from '../../layouts/components/post-manager/postManager';
+const DashboardUser = () => {
     return (
-        <>
-            
-            <LeftSidebaruser/>
+        <> 
+            <postManager></postManager>
         </>
     );
 };
 
-export default Dashboard;
+export default DashboardUser;
