@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.postlike-app{
+    width: 100%;
+    height: 100%;
+    // display: flex;
+}
+.postlike-postapp{
+    width: 100%;
+    display: flex;
+}
+.postlike-bl{
+    width: 60%;
+}
+.postlike-a1{
+    display: flex;
+    gap: 10px;
+}
+.postlike-img{
+    width: 10%;
+}
+.postlike-img img{
+    width: 100%;
+    border-radius: 50%;
+}
+.postlike-d1{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.postlike-d1 .postlike-name{
+    cursor: wait;
+    color: rgb(63, 129, 228);
+    font-size: 1.1vw;
+}
+.postlike-d1 .postlike-thg{
+    color: rgb(206, 205, 205);
+    font-size: 1vw;
+}
+.postlike-d2{
+    width: 100%;
+    text-align: center;
+}
+.postlike-d2 p{
+    font-size: 1.2vw;
+    font-weight: 500;
+}
+.postlike-ch p{
+    color: darkgreen;
+    font-size: 1.5vw;
+    
+}
+.postlike-js{
+    width: 80%;
+}
+.postlike-js p{
+    font-size: 1.2vw;
+    color: dimgrey;
+}
+.postlike-label{
+    display: flex;
+    gap: 15px;
+}
+.postlike-label label{
+    display: flex;
+    padding-bottom: 3%;
+    align-items: center;
+    gap: 5px;
+    font-size: 1vw;
+    color: hotpink;
+}
+.postlike-icon p {
+    color: gray;
+    font-size: 1.2vw;
+}
+@media only screen and (max-width: 600px) {
+    .postlike-chmn{
+        display: none;
+    }
+    body{
+       background-color: rgb(226, 42, 159);
+    }
+  }
