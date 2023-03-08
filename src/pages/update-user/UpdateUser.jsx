@@ -5,28 +5,40 @@ import { uploadSuccess } from '../../redux/userInformation/actions';
 import { DatePicker, Space, Select } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 
-const onChange = (date, dateString) => {
-    console.log(date, dateString);
-};
+// const onChange = (date, dateString) => {
+//     console.log(date, dateString);
+// };
+// const handleChange = (value) => {
+//     setInputValueSex(`${value}`)
+//     console.log(`${value}`);
+// };
+const UpdateUser = () => {
+const [inputValueSex, setInputValueSex] = useState("")
 
 const handleChange = (value) => {
-    console.log(`selected ${value}`);
+    setInputValueSex(`${value}`)
+    // console.log(`${value}`);
 };
-const UpdateUser = () => {
     const dispatch = useDispatch();
-    const handleUpdate = () => {
-            dispatch(uploadSuccess({ username: '', img: 'abc.png' }));
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        const inputValueNameUser = e.target.nameUser.value;
+        const inputValueDateUser = e.target.date.value;
+        dispatch(uploadSuccess({ username: inputValueNameUser, date:inputValueDateUser, sex: inputValueSex, img: 'abc.png' }));
     };
     let test = useSelector((state) => console.log(state.userInforReducer));
-    const [inputValue, setInputValue] = useState('');
-    const handleLogo = (event) => {
+    // const [inputValue, setInputValue] = useState('');
+    // const handleLogo = (event) => {
+    //     console.log(event.target.value);
+    // };
+    // const handleSubmitUpdateUser = (e) => {
+    //     e.preventDefault();
+    //     const inputValueNameUser = e.target.nameUser.value;
+    //     const inputValueDateUser = e.target.date.value;
        
-        console.log(event.target.value);
-    };
-    const handleSubmitUpdateUser = (e)=>{
-        e.preventDefault()
-        console.log(e.target.nameUser.value);
-    }
+    //     // console.log(e.target.sex);
+        
+    // };
     return (
         <div className="update-user">
             <NavbarLeft />
@@ -53,34 +65,37 @@ const UpdateUser = () => {
                         </div>
 
                         <div className="update-Content-1-2">
-                            <form action="" onSubmit={handleSubmitUpdateUser}>
+                            <form action="" onSubmit={handleUpdate}>
                                 <div className="update-Content-1-2-1">
                                     <p>Tên tài khoản</p>
                                     <input type="text" value=" SơnTX" />
                                 </div>
                                 <div className="update-Content-1-2-2">
                                     <p>* Tên hiện thị</p>
-                                    <input type="text" name='nameUser' />
+                                    <input type="text" name="nameUser" />
                                 </div>
                                 <div className="update-Content-1-2-3">
                                     <div className="calendar">
                                         <p>* Ngày Sinh</p>
                                         <Space direction="vertical">
-                                            <DatePicker onChange={onChange} />
+                                            <DatePicker name='date'/>
                                         </Space>
                                     </div>
                                     <div className="user-sex">
                                         <p>* Giới tính</p>
                                         <Space wrap>
                                             <Select
+                                                 value={inputValueSex}
                                                 defaultValue="lucy"
                                                 style={{
                                                     width: 400,
                                                 }}
                                                 onChange={handleChange}
                                                 options={[
+                                                    
                                                     {
-                                                        value: 'jack',
+                                                        
+                                                        value: 'Nam',
                                                         label: 'Nam',
                                                     },
                                                     {
@@ -98,9 +113,7 @@ const UpdateUser = () => {
                                 </div>
                                 <div className="update-Content-1-2-4">
                                     <button>Hủy bỏ</button>
-                                    <button className="update-btn" >
-                                        Cập nhập
-                                    </button>
+                                    <button className="update-btn">Cập nhập</button>
                                 </div>
                             </form>
                         </div>

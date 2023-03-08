@@ -7,7 +7,7 @@ export default function userInforReducer(state = initialState, actions) {
     switch (actions.type) {
         case MeTypes.UPDATE_PROFILE:
             return {
-                ...state,
+                ...state, // lấy lại tất cả các state cũ
                 userInfor: actions.payload.data,
             };
         case MeTypes.UPDATE_POSTUSER:
