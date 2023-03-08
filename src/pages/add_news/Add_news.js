@@ -30,6 +30,11 @@ const Add_news = () => {
                         }}>
                         <Select
                             status="error"
+                            options={[
+                                { value: 'Công khai', label: 'Công khai' },
+                                { value: 'Bất kì ai', label: 'Bất kì ai' },
+                                { value: 'Chỉ mình tôi', label: 'Chỉ mình tôi' },
+                            ]}
                             style={{
                                 width: '100%',
                             }}
