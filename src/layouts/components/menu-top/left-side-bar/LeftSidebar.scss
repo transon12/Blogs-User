@@ -1,0 +1,29 @@
+.index_navbar--container{
+    padding-top: 40px;
+    position: relative;
+    height: 82vh;
+}
+.index_navbar--logo-icons{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+.index_navbar--logo-icons div {
+    margin-right: 10px;
+}
+.index_navbar--btn{
+    padding: 20px 58px;
+    
+    display: flex;
+    align-items: center;
+}
+.index_navbar--btn ion-icon{
+    margin-right: 15px;
+}
+.index_navbar-active{
+    border-left: 5px solid #F48023;
+    background-color: #FCF4EC;
+    color: #F48023;
+}

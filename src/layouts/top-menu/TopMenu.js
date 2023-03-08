@@ -15,6 +15,7 @@ const TopMenu = ({ menu }) => {
         <div className='logo-viblo'>
             <img src={imgLogo} alt="" />
         </div>
+
     );
 };
 

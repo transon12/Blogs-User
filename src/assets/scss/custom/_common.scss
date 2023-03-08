@@ -5,6 +5,7 @@ html,
 body * {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
+   
 }
 
 .ant-layout {
@@ -12,6 +13,9 @@ body * {
 }
 .ant-layout-header .ant-menu {
     border: none;
+}
+.ant-layout-content{
+    margin-left:0 !important; 
 }
 
 .table-custom .ant-table-content {
