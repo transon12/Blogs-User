@@ -76,6 +76,7 @@ const ForgetPassword = () => {
                                 maxWidth: 600,
                             }}
                             validateMessages={validateMessages}>
+                                <div className='register_form_email'></div>
                             <Form.Item
                                 name={['email']}
                                 rules={[
@@ -85,6 +86,7 @@ const ForgetPassword = () => {
                                 ]}>
                                 <Input placeholder="Email" />
                             </Form.Item>
+                            <div className='register_form_button'>
                             <Form.Item shouldUpdate>
                                 {() => (
                                     <Button
@@ -94,10 +96,11 @@ const ForgetPassword = () => {
                                             !form.isFieldsTouched(true) ||
                                             !!form.getFieldsError().filter(({ errors }) => errors.length).length
                                         }>
-                                        submit
+                                        CONFIRM EMAIL
                                     </Button>
                                 )}
                             </Form.Item>
+                            </div>
                         </Form>
                     </div>
                 </div>

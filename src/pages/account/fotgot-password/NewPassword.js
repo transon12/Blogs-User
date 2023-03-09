@@ -32,7 +32,9 @@ const validateMessages = {
 const onFinish = (values) => {
     console.log(values);
 };
-const ForgetPassword = () => {
+const ForgotPassword = () => {
+    
+    const [form] = Form.useForm();
     const states = useSelector((state) => state.forgotPassword);
     const [passwordVisible, setPasswordVisible] = React.useState(false);
     return (
@@ -56,8 +58,9 @@ const ForgetPassword = () => {
             </div>
             <div class="register_form_user_image">
                 <div class="register_form_user">
-                    <h3>CONFIRM NEW PASSWORD</h3>
-                    {states?.user?.email ? states?.user?.email : ''}
+                    <h3>CONFIRM NEW PASSWORD
+                        <br/>
+                    {states?.user?.email ? states.user?.email : ''}</h3>
                     <div class="register_form_input_user">
                         <Form
                             {...layout}
@@ -106,11 +109,21 @@ const ForgetPassword = () => {
                         </Form>
                     </div>
 
-                    <div class="register_button_user">
-                        <button>
-                            <h3>FORGOT PASSWORD</h3>
-                        </button>
-                    </div>
+                    <div className="register_button_user">
+                    <Form.Item shouldUpdate>
+                                {() => (
+                                    <Button
+                                        type="primary"
+                                        htmlType="submit"
+                                        disabled={
+                                            !form.isFieldsTouched(true) ||
+                                            !!form.getFieldsError().filter(({ errors }) => errors.length).length
+                                        }>
+                                        FORGOT PASSWORD
+                                    </Button>
+                                )}
+                            </Form.Item>
+                            </div>
                 </div>
                 <div class="register_form_image">
                     <img src={image} width="100%" alt="" />
@@ -119,4 +132,4 @@ const ForgetPassword = () => {
         </div>
     );
 };
-export default ForgetPassword;
+export default ForgotPassword;

@@ -1,0 +1,10 @@
+export const postsListActionTypes = {
+    POSTS_LIST: '@@postsList/POSTS_LIST',
+    REGISTER_GOOGLE: '@@postsList/REGISTER_GOOGLE',
+    REGISTER_BASIC: '@@postsList/REGISTER_BASIC',
+    CHANGE_SIDEBAR_TYPE: '@@postsList/CHANGE_SIDEBAR_TYPE',
+
+    TOGGLE_RIGHT_SIDEBAR: '@@postsList/TOGGLE_RIGHT_SIDEBAR',
+    SHOW_RIGHT_SIDEBAR: '@@postsList/SHOW_RIGHT_SIDEBAR',
+    HIDE_RIGHT_SIDEBAR: '@@postsList/HIDE_RIGHT_SIDEBAR',
+};

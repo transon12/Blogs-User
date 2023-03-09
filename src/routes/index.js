@@ -15,6 +15,7 @@ const ChangePass = React.lazy(() => import('../pages/account/change-password/Cha
 const Information = React.lazy(() => import('../pages/account/information/Information'));
 const Register = React.lazy(() => import('../pages/account/register/Register'));
 const NewPassword = React.lazy(() => import('../pages/account/fotgot-password/NewPassword'));
+const List = React.lazy(()=> import('../pages/posts/List'))
 
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
@@ -110,6 +111,12 @@ const authRoutes = [
         path: '/New-Password',
         name: 'NewPassword',
         component: NewPassword,
+        route: Route,
+    },
+    {
+        path: '/list/090302',
+        name: 'List',
+        component: List,
         route: Route,
     },
     {
