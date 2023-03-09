@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 import { ROLES } from '../constants/me';
+// import DashboardUser from '../pages/dashboard/DashboardUser';
 
 // lazy load all the views
 
@@ -17,6 +18,8 @@ const Information = React.lazy(() => import('../pages/account/information/Inform
 
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
+const DashboardUser = React.lazy(() => import('../pages/dashboard/DashboardUser'));
+
 
 // root routes
 const rootRoute = {
@@ -28,14 +31,14 @@ const rootRoute = {
 
 // dashboards
 const dashboardRoutes = [
-    {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: Dashboard,
-        // route: PrivateRoute,
-        route: Route,
-        roles: [ROLES.DLEAD]
-    },
+    // {
+    //     path: '/dashboard',
+    //     name: 'Dashboard',
+    //     component: Dashboard,
+    //     // route: PrivateRoute,
+    //     route: Route,
+    //     roles: [ROLES.DLEAD]
+    // },
     {
         path: '/account',
         name: 'Acount',
@@ -43,6 +46,20 @@ const dashboardRoutes = [
         route: PrivateRoute,
         roles: [ROLES.MEMBER, ROLES.DLEAD]
     },
+    {
+        path: '/homepage',
+        name: 'Post',
+        component: Dashboard,
+        route: Route,
+        roles: [ROLES.DLEAD],
+    },
+    {
+        path: '/posts-manage',
+        name: 'Post',
+        component: DashboardUser,
+        route: Route,
+        roles: [ROLES.DLEAD],
+    }
 ];
 
 const otherPublicRoutes = [
