@@ -9,6 +9,7 @@ import DefaultLayout from '../layouts/Default';
 import VerticalLayout from '../layouts/Vertical';
 import DetachedLayout from '../layouts/Detached';
 import HorizontalLayout from '../layouts/horizontal';
+import LayoutDefaut from '../layouts/LayoutDefault';
 
 import { authProtectedFlattenRoutes, publicProtectedFlattenRoutes } from './index';
 
@@ -40,28 +41,8 @@ const Routes = (props) => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path={publicProtectedFlattenRoutes.map((r) => r['path'])}>
-                    <DefaultLayout {...props}>
-                        <Switch>
-                            {publicProtectedFlattenRoutes.map((route, index) => {
-                                return (
-                                    !route.children && (
-                                        <route.route
-                                            key={index}
-                                            path={route.path}
-                                            roles={route.roles}
-                                            exact={route.exact}
-                                            component={route.component}
-                                        />
-                                    )
-                                );
-                            })}
-                        </Switch>
-                    </DefaultLayout>
-                </Route>
-
                 <Route path={authProtectedFlattenRoutes.map((r) => r['path'])}>
-                    <Layout {...props} layout={layout} user={user}>
+                    <DetachedLayout {...props}>
                         <Switch>
                             {authProtectedFlattenRoutes.map((route, index) => {
                                 return (
@@ -77,7 +58,27 @@ const Routes = (props) => {
                                 );
                             })}
                         </Switch>
-                    </Layout>
+                    </DetachedLayout>
+                </Route>
+
+                <Route path={publicProtectedFlattenRoutes.map((r) => r['path'])}>
+                    <LayoutDefaut {...props} layout={layout} user={user}>
+                        <Switch>
+                            {publicProtectedFlattenRoutes.map((route, index) => {
+                                return (
+                                    !route.children && (
+                                        <route.route
+                                            key={index}
+                                            path={route.path}
+                                            roles={route.roles}
+                                            exact={route.exact}
+                                            component={route.component}
+                                        />
+                                    )
+                                );
+                            })}
+                        </Switch>
+                    </LayoutDefaut>
                 </Route>
             </Switch>
         </BrowserRouter>

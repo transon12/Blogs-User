@@ -16,7 +16,7 @@ const PostUsers = () => {
     const handlePostUser = () => {
         dispatch(PostUser(descriptitonCkData));
     };
-    
+    console.log(handlePostUser);
     return (
         <div className="posts-user">
             <div className="posts-user-1" style={{ padding: '1rem'}}>

@@ -14,6 +14,9 @@ const ForgetPassword = React.lazy(() => import('../pages/account/fotgot-password
 const Confirm = React.lazy(() => import('../pages/account/confirm/Confirm'));
 const ChangePass = React.lazy(() => import('../pages/account/change-password/ChangePass'));
 const Information = React.lazy(() => import('../pages/account/information/Information'));
+const Individual = React.lazy(() => import('../pages/individual/Individual'));
+const UpdateUser = React.lazy(() => import('../pages/update-user/UpdateUser'));
+const UpdatePassword = React.lazy(() => import('../pages/update-password/UpdatePassword'));
 
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
@@ -34,14 +37,36 @@ const dashboardRoutes = [
         component: Dashboard,
         // route: PrivateRoute,
         route: Route,
-        roles: [ROLES.DLEAD]
     },
     {
         path: '/account',
         name: 'Acount',
         component: Information,
-        route: PrivateRoute,
-        roles: [ROLES.MEMBER, ROLES.DLEAD]
+        // route: PrivateRoute,
+        roles: Route,
+    },
+];
+const dashboardUesr = [
+    {
+        path: '/homeuser',
+        name: 'Trang chủ',
+        icon: 'fa-solid fa-house',
+        component: Individual,
+        route: Route,
+    },
+    {
+        path: '/post-user',
+        name: 'Thông tin cá nhân',
+        icon: 'fa-solid fa-user',
+        component: UpdateUser,
+        route: Route,
+    },
+    {
+        path: '/change-password',
+        name: 'Đổi mật khẩu',
+        icon: 'fa-solid fa-key',
+        component: UpdatePassword,
+        route: Route,
     },
 ];
 
@@ -121,8 +146,8 @@ const authRoutes = [
 ];
 
 // All routes
-const authProtectedRoutes = [rootRoute, ...dashboardRoutes];
-const publicRoutes = [...authRoutes, ...otherPublicRoutes];
+const authProtectedRoutes = [...dashboardUesr];
+const publicRoutes = [...dashboardRoutes];
 
 const authProtectedFlattenRoutes = flattenRoutes([...authProtectedRoutes]);
 const publicProtectedFlattenRoutes = flattenRoutes([...publicRoutes]);

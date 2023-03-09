@@ -27,7 +27,7 @@ const defaultOptions = {
     },
 };
 
-const DetachedLayout = ({ children }: VerticalLayoutProps, state: VerticalLayoutState): React$Element<any> => {
+const LayoutDefaut = ({ children }: VerticalLayoutProps, state: VerticalLayoutState): React$Element<any> => {
     const loading = () => (
         <div
             style={{
@@ -51,7 +51,7 @@ const DetachedLayout = ({ children }: VerticalLayoutProps, state: VerticalLayout
                     {/* <MenuTop style={{ position: 'fixed', zIndex: 1, width: '100%' }}/> */}
                 </Header>
                 <div style={{ display: 'flex' }}>
-                    {/* <LeftSidebar /> */}
+                    <LeftSidebar />
                     <Content style={{ margin: '24px 16px 0', marginTop: 64 }}>
                         <Suspense fallback={loading()}>{children}</Suspense>
                     </Content>
@@ -61,4 +61,4 @@ const DetachedLayout = ({ children }: VerticalLayoutProps, state: VerticalLayout
     );
 };
 
-export default DetachedLayout;
+export default LayoutDefaut;
