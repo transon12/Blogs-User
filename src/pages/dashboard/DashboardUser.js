@@ -1,11 +1,10 @@
 import React from 'react';
 import LeftSidebaruser from '../../layouts/components/left-side-bar-user/LeftSidebaruser';
-import MenuTop from '../../layouts/components/menu-top/MenuTop';
-import Po from '../../layouts/components/post-manager/postManager';
+import PostManage from '../../layouts/components/post-manage/postManage';
 const DashboardUser = () => {
     return (
         <> 
-            <postManager></postManager>
+            <PostManage></PostManage>
         </>
     );
 };

@@ -21,6 +21,7 @@ type SideBarContentProps = {
 
 /* sidebar content */
 const SideBarContent = ({ hideUserProfile }: SideBarContentProps) => {
+    
     return (
         <>
             {!hideUserProfile && (

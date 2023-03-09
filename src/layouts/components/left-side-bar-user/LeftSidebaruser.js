@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import { Row, Col } from 'antd';
-import ''
+import './LeftSidebar.scss'
 import { leftsidebarRoutes } from '../../../configs/config';
 import { leftsidebarRoutesUser } from '../../../configs/config';
 function LeftSidebaruser() {
