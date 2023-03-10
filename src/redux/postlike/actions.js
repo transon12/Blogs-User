@@ -1,7 +1,7 @@
 import { MeTypes } from './constants';
 
 // common success
-export const responsePostlike = (data) => ({
+export const responsePostlike = (param) => ({
     type: MeTypes.POST_LIKE,
-    payload: { data },
+    payload: { param },
 });
