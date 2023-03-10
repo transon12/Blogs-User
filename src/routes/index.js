@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 import { ROLES } from '../constants/me';
+import Postlike from '../pages/account/postlike/Postlike';
 
 // lazy load all the views
 
@@ -29,19 +30,25 @@ const rootRoute = {
 // dashboards
 const dashboardRoutes = [
     {
+        path: '/postlike',
+        name: 'Postlike',
+        component: Postlike,
+        route: Route,
+    },
+    {
         path: '/dashboard',
         name: 'Dashboard',
         component: Dashboard,
         // route: PrivateRoute,
         route: Route,
-        roles: [ROLES.DLEAD]
+        roles: [ROLES.DLEAD],
     },
     {
         path: '/account',
         name: 'Acount',
         component: Information,
         route: PrivateRoute,
-        roles: [ROLES.MEMBER, ROLES.DLEAD]
+        roles: [ROLES.MEMBER, ROLES.DLEAD],
     },
 ];
 

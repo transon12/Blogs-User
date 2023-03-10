@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-postlike {
+    width: 100%;
+    height: 100%;
+    background-image: url();
+}
+
+.postlike-app {
+    width: 100%;
+    height: 100%;
+    // display: flex;
+}
+
+.postlike-postapp {
+    width: 100%;
+    display: flex;
+}
+
+.narbar-post {
+    width: 90%;
+    padding-bottom: 2%;
+    margin: auto;
+}
+
+.new-post-top {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 2%;
+    display: flex;
+    gap: 20px;
+}
+
+.new-post-top .col {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 10%;
+    padding-left: 1%;
+    font-size: 1vw;
+    border-radius: 10px;
+    border: none;
+    color: #808080;
+    background-color: rgb(233, 229, 229);
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.new-post-top .new-postlike:hover {
+    color: darkorange;
+}
+
+.postlike-bl {
+    width: 90%;
+    padding-bottom: 3%;
+    border: 1px solid rgb(177, 171, 171);
+    padding-left: 5%;
+    margin: auto;
+    margin-top: 3%;
+    padding-top: 2%;
+    background: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+}
+
+.postlike-a1 {
+    display: flex;
+    gap: 10px;
+}
+
+.postlike-img {
+    width: 10%;
+}
+
+.postlike-img img {
+    width: 100%;
+    border-radius: 999px;
+}
+
+.postlike-d1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.postlike-d1 .postlike-name {
+    cursor: wait;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.05em;
+    font-size: 1vw;
+}
+
+.postlike-d1 .postlike-thg {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.05em;
+    color: #808080;
+    font-size: 1vw;
+}
+
+.postlike-d2 {
+    width: 80%;
+    text-align: center;
+}
+
+.postlike-d2 p {
+    font-size: 1.2vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+
+    color: #000000;
+}
+
+.postlike-ch p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.05em;
+
+    color: #000000;
+
+    font-size: 1.5vw;
+
+}
+
+.postlike-js {
+    width: 80%;
+}
+
+.postlike-js p {
+    font-size: 1.2vw;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.05em;
+    color: #1682FD;
+    ;
+}
+
+.postlike-label {
+    display: flex;
+    gap: 15px;
+}
+
+.postlike-label label {
+    display: flex;
+    padding-bottom: 3%;
+    align-items: center;
+    gap: 5px;
+    font-size: 1vw;
+    color: rgb(100, 55, 73);
+}
+
+.postlike-icon p {
+    padding-bottom: 3%;
+    width: 80%;
+    font-size: 1.2vw;
+    cursor: wait;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.05em;
+}
+
+.postlike-botton {
+    width: 90%;
+    gap: 20px;
+    margin: auto;
+    display: flex;
+}
+
+.postlike-botton .button1 {
+    padding: 1% 5% 1% 5%;
+    font-size: 1vw;
+    border: 1px solid black;
+    width: 30%;
+    color: #808080;
+    background-color: #EAEAEA;
+    border: none;
+    border-radius: 5px;
+    cursor: wait;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.05em;
+    font-size: 1vw;
+}
+
+.postlike-botton .button1:hover {
+    color: rgb(20, 152, 161);
+}
+
+.postlike-botton .button2:hover {
+    color: rgb(20, 152, 161);
+}
+
+.postlike-botton .button3:hover {
+    color: rgb(20, 152, 161);
+}
+
+.postlike-botton .button4:hover {
+    color: rgb(20, 152, 161);
+}
+
+.postlike-botton .button2 {
+    font-size: 1vw;
+    width: 30%;
+    border: 1px solid black;
+    color: #808080;
+    background-color: #EAEAEA;
+    border: none;
+    border-radius: 5px;
+    cursor: wait;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.05em;
+    font-size: 1vw;
+}
+
+.postlike-botton .button3 {
+    font-size: 1vw;
+    width: 30%;
+    border: 1px solid black;
+    color: #808080;
+    background-color: #EAEAEA;
+    border: none;
+    border-radius: 5px;
+    cursor: wait;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.05em;
+    font-size: 1vw;
+}
+
+.postlike-botton .button4 {
+    font-size: 1vw;
+    padding: 0% 2% 0% 2%;
+    width: 20%;
+    border: 1px solid black;
+    color: #808080;
+    background-color: #EAEAEA;
+    border: none;
+    cursor: wait;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0.05em;
+    font-size: 1vw;
+    border-radius: 5px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .postlike-chmn {
+        display: none;
+    }
+
+    .postlike-app {
+        background-color: rgb(226, 42, 159);
+    }
+
+    .new-post-top {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
