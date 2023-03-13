@@ -8,11 +8,11 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
+import { reponseAddlike } from '../../../redux/postlike/actions';
 
 function Postlike() {
     const dispatch = useDispatch();
     const { lists } = useSelector((state) => state.postLike);
-    console.log(lists.sort());
     const { posts } = useSelector((state) => state.postLike);
     const history = useHistory();
     const handleClick = () => {
@@ -29,22 +29,43 @@ function Postlike() {
             }}
         />
     );
-    const onSearch = (value) => console.log(value);
+    const onSearch = (value) => {
+        let huhu = value.name;
+        console.log(huhu);
+    };
 
     const handleClickhot = () => {
         let likeSort = lists.sort(function (a, b) {
             return b.like - a.like;
         });
-        dispatch(responsePostlike(likeSort.lists))
+        dispatch(responsePostlike(likeSort.lists));
         console.log(likeSort);
     };
-
     const handleClicklist = () => {
         let timeSort = lists.sort(function (a, b) {
             return Date.parse(a.day) - Date.parse(b.day);
         });
-        dispatch(responsePostlike(timeSort.lists))
+        dispatch(responsePostlike(timeSort.lists));
         console.log(timeSort);
+    };
+
+    const handleClickthem = () => {
+        
+        let listnew = lists;
+        listnew.push(
+            {
+                id: 7,
+                img: 'https://tinhayvip.com/wp-content/uploads/2022/08/top-99-anh-gai-xinh-mac-bikini-mau-trang-15.jpg',
+                name: 'Nguyễn Trường An',
+                day: '2023/10/03 09:00:00 pm',
+                content: 'Bài viết này thật là hay rất ý nghĩa là oki',
+                like: 50,
+            },
+        );
+        console.log(listnew);
+        console.log(lists);
+
+        dispatch(reponseAddlike(listnew));
     };
     return (
         <>
@@ -104,7 +125,7 @@ function Postlike() {
                     <Col span={10}>
                         <div className="postlike-chmn">
                             <div className="postlike-ch">
-                                <p>CÂU HỎI MỚI NHẤT</p>
+                                <p>DANH MỤC MỚI NHẤT</p>
                             </div>
                             {posts.map((e, i) => (
                                 <div className="postlike-content">
@@ -130,6 +151,9 @@ function Postlike() {
                                     </div>
                                 </div>
                             ))}
+                            <button onClick={handleClickthem} className="postlist-xemthem">
+                                Xem Thêm
+                            </button>
                         </div>
                     </Col>
                 </Row>
