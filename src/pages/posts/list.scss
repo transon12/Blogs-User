@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
+}
+.posts-list{
+    background-color: #f2f1f1;
 }
 
 .posts-list-details{
@@ -15,6 +19,15 @@
     
     padding: 3%;
     display: flex;
+}
+.posts-list-name-button-add{
+    background-color: rgb(26, 107, 237);
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+.posts-list-name-button-add:hover{
+    background-color: rgb(5, 71, 177);
 }
 .posts-list-avata-name .img{
     border-radius: 100px;
@@ -35,7 +48,7 @@
 }
 .saohong {
     border: none;
-    background-color: white;
+    background-color: #f2f1f1;
     
     
 }
@@ -88,3 +101,11 @@ margin-left: 120px;
 .posts-list-content-title .p{
     margin-top: 30px;
 }
+.posts-list-comment{
+    width: 65%;
+   
+    margin: auto;
+    height: 500px;
+    
+}
+

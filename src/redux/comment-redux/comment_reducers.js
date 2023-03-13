@@ -1,6 +1,9 @@
-import { postsListActionTypes } from './post_contanst';
+import { commentActionTypes } from './comment_contanst';
 
 const initialState = {
+    isLiked: false,
+    isDisliked: false,
+    user: null,
     detail: [
         {
             title: '12 lý do khiến MySQL truy vấn chậm - Part 1',
@@ -19,30 +22,45 @@ const initialState = {
         {
             sao: '932.5k',
             user: '567',
-            img: 'https://khoinguonsangtao.vn/wp-content/uploads/2022/08/anh-hoat-hinh-buon.jpeg',
-            view: '903.2k',
+       view: '903.2k',
+                 img: 'https://khoinguonsangtao.vn/wp-content/uploads/2022/08/anh-hoat-hinh-buon.jpeg',
             edit: '32',
             coment: '37k',
             book: '53',
-            add: 'theo dõi',
+            add: 'theo dõi+',
             time: 'Đã đăng vào khoảng 24 giờ trước - 6 phút đọc',
         },
     ],
 };
-
-export default function post_reducers(state = initialState, action) {
+export default function comment(state = initialState, action) {
     switch (action.type) {
-        case postsListActionTypes.POSTS_LIST:
+        case 'LIKE_CLICKED':
+        return {
+            ...state,
+              isLiked: true,
+              isDisliked: false
+        };  
+        case 'DISLIKE_CLICKED':
+            if (state.isLiked) {
+                return state;
+              } else {
+                return {
+                  ...state,
+                  isLiked: false,
+                  isDisliked: true
+                };
+              }
+        case commentActionTypes.COMMENT_CONTENT:
             return {
                 ...state,
-                title: action.payload,
-                content: action.payload,
-                content1: action.payload,
-                img1: action.payload,
-                content2: action.payload,
-                img2: action.payload,
-                content3: action.payload,
+                page: action.payload,
             };
+        case commentActionTypes.HIDE_RIGHT_SIDEBAR:
+            return {
+                ...state,
+                user: action.payload,
+            };
+        default:
+            return state;
     }
-    return state;
 }

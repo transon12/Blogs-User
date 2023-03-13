@@ -32,8 +32,10 @@ const validateMessages = {
 
 const ForgetPassword = () => {
     const states = useSelector((state) => state.forgotPassword);
+
     let history = useHistory();
     console.log(states);
+    
     const dispatch = useDispatch();
     const [form] = Form.useForm();
     const onFinish = (values) => {
