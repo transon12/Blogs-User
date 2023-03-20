@@ -12,10 +12,10 @@ export function commentBasic(data) {
     };
 }
 export const likeClicked = () => ({
-    type: 'LIKE_CLICKED',
-    
+    type: 'LIKE_CLICKED'
   });
   
   export const dislikeClicked = () => ({
     type: 'DISLIKE_CLICKED'
   });
+ 

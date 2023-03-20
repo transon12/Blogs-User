@@ -1,8 +1,15 @@
+@import "../../assets/scss/custom/mixins.scss";
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     
+}
+@include min-smplus{
+    body{
+        color: rgb(20, 206, 206);
+    }
 }
 .posts-list{
     background-color: #f2f1f1;
@@ -107,5 +114,21 @@ margin-left: 120px;
     margin: auto;
     height: 500px;
     
+}
+.posts-list-content-evaluate{
+    width: 65%;
+   
+    margin: auto;
+    height: 70px;
+}
+.posts-list-content-evaluate-sao{
+    display: flex;
+    padding-left: 50px;
+    
+   
+}
+.posts-list-content-evaluate-sao button{
+    margin-left: 20px;
+    border: none;
 }
 

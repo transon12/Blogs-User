@@ -4,8 +4,10 @@ import { postsList } from '../../redux/posts-redux/post_actions';
 import { Link, Route, Redirect, useHistory } from 'react-router-dom';
 import { commentContent, commentBasic, likeClicked, dislikeClicked } from '../../redux/comment-redux/comment_actions';
 import { useDispatch, useSelector } from 'react-redux';
+import  Mixin  from '../../assets/scss/custom/mixins.scss';
 
 import {
+    StarFilled,
     LikeFilled,
     UserAddOutlined,
     EditFilled,
@@ -15,7 +17,7 @@ import {
     DislikeFilled,
 } from '@ant-design/icons';
 
-import { Avatar, Button, Comment, Form, Input, List } from 'antd';
+import { Avatar, Button, Comment, Form, Input, List, Rate } from 'antd';
 import moment from 'moment';
 
 const { TextArea } = Input;
@@ -198,6 +200,13 @@ const Lists = () => {
                     <p>{e.content3}</p>
                 </div>
             ))}
+            <div className='posts-list-content-evaluate'>
+                Đánh giá:
+                <div className='posts-list-content-evaluate-sao'>
+                    
+                <Rate />
+                </div>
+            </div>
             <div className="posts-list-comment">
                 {states.page.length > 0 && <CommentList comments={states.page} />}
                 {states?.user?.comment ? states.user?.comment : ''}
