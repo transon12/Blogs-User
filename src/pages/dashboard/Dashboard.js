@@ -10,7 +10,7 @@ const Dashboard = () => {
             {/* <Individual/> */}
             {/* <UpdatePassword/> */}
             {/* <UpdateUser/> */}
-            <PostUser />
+            {/* <PostUser /> */}
         </div>
     );
 };

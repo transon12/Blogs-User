@@ -1,7 +1,7 @@
 import { MeTypes } from './constants';
 const initialState = {
     userInfor: '',
-    posts:{}
+    posts: {},
 };
 export default function userInforReducer(state = initialState, actions) {
     switch (actions.type) {
@@ -11,10 +11,15 @@ export default function userInforReducer(state = initialState, actions) {
                 userInfor: actions.payload.data,
             };
         case MeTypes.UPDATE_POSTUSER:
-            return{
+            return {
                 ...state,
                 posts: actions.payload.data,
-            }
+            };
+        case MeTypes.UPDATE_COMPARE:
+            return {
+                ...state,
+                posts: actions.payload.data,
+            };
     }
     return state;
 }

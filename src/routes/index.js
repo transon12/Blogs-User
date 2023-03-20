@@ -17,7 +17,7 @@ const Information = React.lazy(() => import('../pages/account/information/Inform
 const Individual = React.lazy(() => import('../pages/individual/Individual'));
 const UpdateUser = React.lazy(() => import('../pages/update-user/UpdateUser'));
 const UpdatePassword = React.lazy(() => import('../pages/update-password/UpdatePassword'));
-
+// const PostUser = React.lazy(() => import('../pages/posts-user/PostUser'));
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
 
@@ -54,10 +54,17 @@ const dashboardUesr = [
         component: Individual,
         route: Route,
     },
+    // {
+    //     path: '/post-user',
+    //     name: 'Thông tin cá nhân',
+    //     icon: 'fa-solid fa-user',
+    //     component: PostUser,
+    //     route: Route,
+    // },
     {
-        path: '/post-user',
-        name: 'Thông tin cá nhân',
-        icon: 'fa-solid fa-user',
+        path: '/update-user',
+        name: 'Update thông tin cá nhân',
+        icon: '',
         component: UpdateUser,
         route: Route,
     },

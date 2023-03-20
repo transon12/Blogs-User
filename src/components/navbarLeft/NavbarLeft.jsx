@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, Link, useHistory, NavLink } from 'react-router-dom';
 import './NavbarLeft.scss';
+import '../../assets/scss/custom/mixins.scss'
+
 
 const NavbarLeft = () => {
     const [isActive, setIsActive] = useState(false);
     const [isKey, setIsKey] = useState(false);
+    const location = useLocation();
+    let history = useHistory();
+    console.log(history.location.pathname);
+    useEffect(() => {
+        if (history.location.pathname === '/update-user') {
+            setIsActive(true);
+        }
+        if (history.location.pathname === '/change-password') {
+            setIsKey(true);
+        }
+    }, []);
     return (
         <div class="individual-1">
             <Link to="/homeuser">
@@ -23,13 +36,15 @@ const NavbarLeft = () => {
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <Link to="/post-user" style={{ color: '#876A4B' }}>
+                <NavLink to="/post-user" style={{ color: '#876A4B' }}>
                     {isActive && (
                         <div class="detail">
-                            <div class="detail-1">
-                                <i class="fa-solid fa-user"></i>
-                                <span>Thông Tin Cá Nhân</span>
-                            </div>
+                            <NavLink to="/update-user" style={{ color: '#876A4B' }}>
+                                <div class="detail-1">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span>Thông Tin Cá Nhân</span>
+                                </div>
+                            </NavLink>
                             <div class="detail-1">
                                 <i class="fa-solid fa-address-card"></i>
                                 <span>Thông Tin Liên Hệ</span>
@@ -40,7 +55,7 @@ const NavbarLeft = () => {
                             </div>
                         </div>
                     )}
-                </Link>
+                </NavLink>
             </div>
             <div class="individual-1-3">
                 <div class="security" onClick={(e) => setIsKey(!isKey)}>
@@ -52,14 +67,14 @@ const NavbarLeft = () => {
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-                <Link to="/change-password" style={{ color: '#876A4B' }}>
+                <NavLink to="/change-password" style={{ color: '#876A4B' }}>
                     {isKey && (
                         <div class="key">
                             <i class="fa-solid fa-key"></i>
                             <span>Mật Khẩu</span>
                         </div>
                     )}
-                </Link>
+                </NavLink>
             </div>
         </div>
     );

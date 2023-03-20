@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavbarLeft from '../../components/navbarLeft/NavbarLeft';
 import './UpdateUser.scss';
 import { uploadSuccess } from '../../redux/userInformation/actions';
 import { DatePicker, Space, Select } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 
-// const onChange = (date, dateString) => {
-//     console.log(date, dateString);
-// };
-// const handleChange = (value) => {
-//     setInputValueSex(`${value}`)
-//     console.log(`${value}`);
-// };
-const UpdateUser = () => {
-const [inputValueSex, setInputValueSex] = useState("")
 
-const handleChange = (value) => {
-    setInputValueSex(`${value}`)
-    // console.log(`${value}`);
-};
+
+
+const UpdateUser = () => {
+    const [inputValueSex, setInputValueSex] = useState("")
+
+    const handleChange = (value) => {
+        setInputValueSex(`${value}`)
+        // console.log(`${value}`);
+    };
     const dispatch = useDispatch();
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -27,18 +23,6 @@ const handleChange = (value) => {
         dispatch(uploadSuccess({ username: inputValueNameUser, date:inputValueDateUser, sex: inputValueSex, img: 'abc.png' }));
     };
     let test = useSelector((state) => console.log(state.userInforReducer));
-    // const [inputValue, setInputValue] = useState('');
-    // const handleLogo = (event) => {
-    //     console.log(event.target.value);
-    // };
-    // const handleSubmitUpdateUser = (e) => {
-    //     e.preventDefault();
-    //     const inputValueNameUser = e.target.nameUser.value;
-    //     const inputValueDateUser = e.target.date.value;
-       
-    //     // console.log(e.target.sex);
-        
-    // };
     return (
         <div className="update-user">
             <NavbarLeft />

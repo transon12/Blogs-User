@@ -1,3 +1,7 @@
+@import '../../assets/scss/custom/mixins.scss';
+
+
+
 .individual-1{
     width: 25%;
     height: 100%;
@@ -140,10 +144,37 @@
 }
 
 
+.active{
+    color: rgb(2, 218, 247) !important;
+}
 
+// .individual-1{
+//     display: none;
+// }
 
+/* Mobile: width < 740px*/
 
+// @include max-sm(){
+//     .individual-1{
+        
+//     }
+// }
 
+/* Table: width >=740px and width < 1024px*/
+
+// @include center-xxl-xl{
+//     .individual-1{
+        
+//     }
+// }
+
+/* PC : width >=1024px */
+// @include min-lg (){
+//     .individual-1{
+//         // display: block;
+//         color: red;
+//     }
+// }
 
 
 

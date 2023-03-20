@@ -4,6 +4,7 @@ import './Individual.scss';
 import img from '../../assets/images/keyuser.png';
 import img1 from '../../assets/images/logo1.png';
 import img2 from '../../assets/images/lienket.png';
+import { Link } from 'react-router-dom';
 
 const Individual = () => {
     return (
@@ -22,15 +23,19 @@ const Individual = () => {
                     </div>
                     <div class="individual-2-2">
                         <div class="card">
-                            <div class="card-1">
-                                <img src={img1} alt="" />
-                                <p>Thông tin của tôi</p>
-                            </div>
-                            <div class="card-1">
-                                <img src={img} alt="" />
-                                <p>Mật khẩu</p>
-                            </div>
-                            <div class="card-1">
+                            <Link to="/update-user" className='card-1' style={{ color: '#876A4B' }}>
+                                <div>
+                                    <img src={img1} alt="" />
+                                    <p>Thông tin của tôi</p>
+                                </div>
+                            </Link>
+                            <Link to="/change-password" className='card-1' style={{ color: '#876A4B' }}>
+                                <div>
+                                    <img src={img} alt="" />
+                                    <p>Mật khẩu</p>
+                                </div>
+                            </Link>
+                            <div className='card-1'>
                                 <img src={img2} alt="" />
                                 <p>Bài viết của tôi</p>
                             </div>
