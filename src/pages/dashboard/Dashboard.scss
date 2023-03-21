@@ -1,0 +1,168 @@
+
+.roadmap-container {
+    padding: 0 10%;
+
+    @media screen and (max-width: 575px){
+        padding: 0 3%;
+    }
+
+    .roadmap-header {
+        display: block;
+        padding: 3rem 0!important;
+
+        .container {
+            width: 100%;
+            padding: 0 15px;
+            margin-right: auto;
+            margin-left: auto;
+
+            h1 {
+                font-size: calc(1.375rem + 1.5vw);
+                font-weight: 600;
+                line-height: 1.2;
+                margin-bottom: 0!important;
+            }
+            li {
+                cursor: pointer;
+
+                &:last-child {
+                    color: #bb2327!important;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    
+    .course-filter {
+        margin-bottom: 2rem!important;
+
+        .filter-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @media screen and (max-width: 575px) {
+                flex-direction: column;
+            }
+
+            span {
+                color: #bb2327;
+
+                &:last-child {
+                    text-decoration: underline;
+                }
+            }
+
+            .filter-items {
+                width: 30%;
+
+                .filter-search {
+                    display: flex;
+                    align-items: center;
+                }
+
+                input {
+                    border: 1px solid #70675B;
+                    border-radius: 50px;
+                    height: 50px;
+                    padding-left: 20px;
+                    padding-right: 50px;
+                    width: 100%;
+                    outline: none;
+                }
+
+                span {
+                    width: 35px;
+                    height: 35px;
+                    background-color: #bb2327;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    margin-left: -45px;
+                }
+            }
+        }
+    }
+
+    .gutter-row {
+
+        .roadmap-item {
+
+            .roadmap-item-image {
+                overflow: hidden;
+
+                .road-item-image-link {
+                    transition: transform 0.3s ease-out;
+                    width: 100%;
+
+                    &:hover {
+                        transform: scale(1.1); // zoom lên 1.1 lần khi hover vào
+                      }
+                }
+            }
+
+            .roadmap-item-content {
+
+                h5 {
+                    margin-bottom: 0.5em;
+                    color: rgba(0,0,0,.85);
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    margin-top: 10px;
+
+                    @media screen and (max-width : 1280px) {
+                        font-size: 13px;
+                    }
+                }
+
+                .roadmap-item-content-description {
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3;
+                    min-height: 76px;
+                    color: #70675B;
+
+                    @media screen and (max-width : 1280px) {
+                        font-size: 15px;
+                    }
+                }
+
+                .roadmap-item-content-footer {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .roadmap-footer-content {
+                        display: flex;
+                        align-items: center;
+                        color: #77838f;
+                        margin-top: 16px;
+
+                        svg {
+                            
+                            @media screen and (max-width :1280px) {
+                                font-size: 13px;
+                            }
+
+                        }
+
+                        span {
+                            @media screen and (max-width :1280px) {
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
