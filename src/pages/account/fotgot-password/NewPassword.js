@@ -1,11 +1,10 @@
 // @flow
 import React, { useEffect, useState } from 'react';
 import image from '../../../assets/images/register/Image.png';
-import { Link, Route, Redirect, useHistory } from 'react-router-dom';
+import './newpassword.scss';
+import { useSelector } from 'react-redux';
 
 import '../fotgot-password/style.scss';
-import { forgotemail, forgotbasic } from '../../../redux/redux-fotgot-password/actions';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Form, Input, InputNumber } from 'antd';
 const layout = {
@@ -30,22 +29,14 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const ForgetPassword = () => {
-    const states = useSelector((state) => state.forgotPassword);
-
-    let history = useHistory();
-    console.log(states);
+const onFinish = (values) => {
+    console.log(values);
+};
+const ForgotPassword = () => {
     
-    const dispatch = useDispatch();
     const [form] = Form.useForm();
-    const onFinish = (values) => {
-        dispatch(forgotemail(values));
-        return history.push('/New-Password');
-    };
+    const states = useSelector((state) => state.forgotPassword);
     const [passwordVisible, setPasswordVisible] = React.useState(false);
-
-    const [userData, setUserData] = useState(null);
-    const handleClick = () => {};
     return (
         <div class="register">
             <div class="register_nav3">
@@ -67,8 +58,9 @@ const ForgetPassword = () => {
             </div>
             <div class="register_form_user_image">
                 <div class="register_form_user">
-                    <h3>Confirm Email</h3>
-
+                    <h3>CONFIRM NEW PASSWORD
+                        <br/>
+                    {states?.user?.email ? states.user?.email : ''}</h3>
                     <div class="register_form_input_user">
                         <Form
                             {...layout}
@@ -78,18 +70,47 @@ const ForgetPassword = () => {
                                 maxWidth: 600,
                             }}
                             validateMessages={validateMessages}>
-                                <div className='register_form_email'></div>
                             <Form.Item
-                                name={['email']}
+                                name="password"
+                                label="Password"
                                 rules={[
                                     {
-                                        type: 'email',
+                                        required: true,
+                                        message: 'Please input your password!',
                                     },
-                                ]}>
-                                <Input placeholder="Email" />
+                                ]}
+                                hasFeedback>
+                                <Input.Password />
                             </Form.Item>
-                            <div className='register_form_button'>
-                            <Form.Item shouldUpdate>
+
+                            <Form.Item
+                                name="confirm"
+                                label="Confirm Password"
+                                dependencies={['password']}
+                                hasFeedback
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please confirm your password!',
+                                    },
+                                    ({ getFieldValue }) => ({
+                                        validator(_, value) {
+                                            if (!value || getFieldValue('password') === value) {
+                                                return Promise.resolve();
+                                            }
+                                            return Promise.reject(
+                                                new Error('The two passwords that you entered do not match!')
+                                            );
+                                        },
+                                    }),
+                                ]}>
+                                <Input.Password />
+                            </Form.Item>
+                        </Form>
+                    </div>
+
+                    <div className="register_button_user">
+                    <Form.Item shouldUpdate>
                                 {() => (
                                     <Button
                                         type="primary"
@@ -98,13 +119,11 @@ const ForgetPassword = () => {
                                             !form.isFieldsTouched(true) ||
                                             !!form.getFieldsError().filter(({ errors }) => errors.length).length
                                         }>
-                                        CONFIRM EMAIL
+                                        FORGOT PASSWORD
                                     </Button>
                                 )}
                             </Form.Item>
                             </div>
-                        </Form>
-                    </div>
                 </div>
                 <div class="register_form_image">
                     <img src={image} width="100%" alt="" />
@@ -113,4 +132,4 @@ const ForgetPassword = () => {
         </div>
     );
 };
-export default ForgetPassword;
+export default ForgotPassword;

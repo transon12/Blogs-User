@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 import { ROLES } from '../constants/me';
-
 // lazy load all the views
 
 // auth
@@ -14,6 +13,9 @@ const ForgetPassword = React.lazy(() => import('../pages/account/fotgot-password
 const Confirm = React.lazy(() => import('../pages/account/confirm/Confirm'));
 const ChangePass = React.lazy(() => import('../pages/account/change-password/ChangePass'));
 const Information = React.lazy(() => import('../pages/account/information/Information'));
+const Register = React.lazy(() => import('../pages/account/register/Register'));
+const NewPassword = React.lazy(() => import('../pages/account/fotgot-password/NewPassword'));
+const detail = React.lazy(() => import('../pages/posts/detailPosts'));
 
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
@@ -34,14 +36,14 @@ const dashboardRoutes = [
         component: Dashboard,
         // route: PrivateRoute,
         route: Route,
-        roles: [ROLES.DLEAD]
+        roles: [ROLES.DLEAD],
     },
     {
         path: '/account',
         name: 'Acount',
         component: Information,
         route: PrivateRoute,
-        roles: [ROLES.MEMBER, ROLES.DLEAD]
+        roles: [ROLES.MEMBER, ROLES.DLEAD],
     },
 ];
 
@@ -89,15 +91,33 @@ const authRoutes = [
         route: Route,
     },
     {
+        path: '/register',
+        name: 'Register',
+        component: Register,
+        route: Route,
+    },
+    {
         path: '/account/logout',
         name: 'Logout',
         component: Logout,
         route: Route,
     },
     {
-        path: '/account/forget-password',
+        path: '/forget-password',
         name: 'Forget Password',
         component: ForgetPassword,
+        route: Route,
+    },
+    {
+        path: '/New-Password',
+        name: 'NewPassword',
+        component: NewPassword,
+        route: Route,
+    },
+    {
+        path: '/detail/:id',
+        name: 'detail',
+        component: detail,
         route: Route,
     },
     {
