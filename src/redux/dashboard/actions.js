@@ -18,7 +18,7 @@ export const getMeList = (params) => {
     return {
         type: MeTypes.GET_ME_LIST,
         payload: { params },
-    }
+    };
 };
 
 // action update ME
@@ -26,7 +26,7 @@ export const updateMe = (params) => {
     return {
         type: MeTypes.UPDATE_ME,
         payload: { params },
-    }
+    };
 };
 
 // action submit ME
@@ -34,7 +34,7 @@ export const submitMe = (params) => {
     return {
         type: MeTypes.SUBMIT_ME,
         payload: { params },
-    }
+    };
 };
 
 // action approve ME
@@ -42,7 +42,7 @@ export const approveMe = (params) => {
     return {
         type: MeTypes.APPROVE_ME,
         payload: { params },
-    }
+    };
 };
 
 // action feedback ME
@@ -50,7 +50,7 @@ export const feedbackMe = (params) => {
     return {
         type: MeTypes.FEEDBACK_ME,
         payload: { params },
-    }
+    };
 };
 
 // action approve multiple ME
@@ -58,7 +58,7 @@ export const approveMultipleMe = (params) => {
     return {
         type: MeTypes.APPROVE_MULTIPLE_ME,
         payload: { params },
-    }
+    };
 };
 
 // action feedback multiple ME
@@ -66,7 +66,7 @@ export const feedbackMultipleMe = (params) => {
     return {
         type: MeTypes.FEEDBACK_MULTIPLE_ME,
         payload: { params },
-    }
+    };
 };
 
 //action reset update success message

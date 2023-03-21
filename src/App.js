@@ -16,11 +16,10 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
  * Main app component
  */
 const App = () => {
-
     useEffect(() => {
         Spin.setDefaultIndicator(antIcon);
     }, []);
-   
+
     return (
         <>
             <Routes></Routes>
