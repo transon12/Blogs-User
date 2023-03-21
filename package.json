@@ -53,6 +53,7 @@
         "redux-saga": "^1.1.3",
         "sass": "^1.49.9",
         "simplebar-react": "^2.3.3",
+        "toastify-js": "^1.12.0",
         "universal-cookie": "^4.0.4",
         "web-vitals": "^1.0.1",
         "webfontloader": "^1.6.28"

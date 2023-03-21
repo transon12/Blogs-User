@@ -8,30 +8,33 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { useDispatch, useSelector } from 'react-redux';
 import { responseSuccess } from '../../../redux/login/actions';
-import { responseLogin } from '../../../redux/login/actions'
+import { responseLogin } from '../../../redux/login/actions';
+import Toastify from 'toastify-js';
+import Password from 'antd/lib/input/Password';
 function Login() {
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
     const [username, setUserName] = useState();
     const [useremail, setUserEmail] = useState();
     const [profile, setProfile] = useState(null);
+    const [error, setError] = useState('');
 
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.Login.userInformation);
     console.log(userData);
 
-    const data = [
-        {
-            id: 1,
-            name: 'nguyen truong an',
-            password: '123456',
-        },
-        {
-            id: 2,
-            name: 'dang tan dung',
-            password: '123456',
-        },
-    ];
+    // const data = [
+    //     {
+    //         id: 1,
+    //         name: 'nguyen truong an',
+    //         password: '123456',
+    //     },
+    //     {
+    //         id: 2,
+    //         name: 'dang tan dung',
+    //         password: '123456',
+    //     },
+    // ];
 
     const pass = (googleData) => {
         console.log(googleData);
@@ -41,7 +44,6 @@ function Login() {
     const fail = (result) => {
         console.log(result.error);
     };
-
     const responseFacebook = (response) => {
         console.log(response);
         setProfile(response.data);
@@ -51,14 +53,47 @@ function Login() {
         console.log(result.error);
     };
 
-    const onFinish = (event) =>{
+    const onFinish = (event) => {
         console.log(event);
-        dispatch(responseLogin({ event }));
-    }
+        const data = {
+            email: event.email,
+            password: event.password,
+        };
+        console.log(data);
+        fetch('https://dev-api.rikkeiacademy.com/api/student/login', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+                if (data.message === 'Login haha') {
+                    Toastify({
+                        text: 'This is a toast',
+                        duration: 3000,
+                    }).showToast();
+                }else{
+                    Toastify({
+                        text: 'huhu is a toast',
+                        duration: 3000,
+                    }).showToast();
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
 
+        dispatch(responseLogin({ data }));
+        localStorage.setItem('data',JSON.stringify(data))
+    };
+// 12345678
     return (
         <>
             <div className="login-form">
+                <div className="error">{error}</div>
                 <div className="narbar">
                     <div className="icon-alen">
                         <img src={image1} alt="" />
@@ -88,8 +123,7 @@ function Login() {
                                     More than 150 questions are waiting for your wise suggestions
                                 </p>
                             </div>
-                            <Form 
-                               
+                            <Form
                                 name="normal_login"
                                 className="login-form"
                                 initialValues={{
@@ -97,17 +131,17 @@ function Login() {
                                 }}
                                 onFinish={onFinish}>
                                 <Form.Item
-                                    name="username"
+                                    name="email"
                                     className="form-chu1"
                                     rules={[
                                         {
                                             required: true,
-                                            message: 'Please input your Username!',
+                                            message: 'Please input your Email!',
                                         },
                                     ]}>
                                     <Input
                                         prefix={<UserOutlined className="site-form-item-icon" />}
-                                        placeholder="Username"
+                                        placeholder="Email"
                                     />
                                 </Form.Item>
                                 <Form.Item
