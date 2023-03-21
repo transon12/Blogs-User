@@ -5,5 +5,5 @@ import authSaga from './auth/saga';
 import layoutSaga from './layout/saga';
 import dashboardSaga from './dashboard/saga';
 export default function* rootSaga() {
-    yield all([authSaga(), layoutSaga(), dashboardSaga()]);
+    yield all([authSaga(), layoutSaga(), dashboardSaga(), ]);
 }

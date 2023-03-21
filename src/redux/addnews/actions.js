@@ -1,7 +1,12 @@
 
 import { MeTypes } from './constants';
 
-export const responseAdd= (params) => ({
+export const responseAdd= (data) => ({
     type: MeTypes.ADD_NEWS,
-    payload: { params },
+    payload: data,
 });
+
+export const postContent = (data) => ({
+    type: MeTypes.POST_CONTENT,
+    payload: data,
+})
