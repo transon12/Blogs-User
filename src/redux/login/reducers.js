@@ -11,6 +11,13 @@ export default function reducers(state = initialState, action) {
                 userInformation: action.payload,
             };
         }
+        case MeTypes.LOGIN_SUCCESS: {
+            console.log('LOGIN REDUCER OKE');
+            return {
+                ...state,
+                userInformation: action.payload,
+            };
+        }
     }
     return state;
 }

@@ -9,7 +9,8 @@ import FacebookLogin from 'react-facebook-login';
 import { useDispatch, useSelector } from 'react-redux';
 import { responseSuccess } from '../../../redux/login/actions';
 import { responseLogin } from '../../../redux/login/actions';
-import Toastify from 'toastify-js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Password from 'antd/lib/input/Password';
 function Login() {
     const [form] = Form.useForm();
@@ -52,7 +53,6 @@ function Login() {
     const componentClicked = (result) => {
         console.log(result.error);
     };
-
     const onFinish = (event) => {
         console.log(event);
         const data = {
@@ -61,7 +61,7 @@ function Login() {
         };
         console.log(data);
         fetch('https://dev-api.rikkeiacademy.com/api/student/login', {
-            method: 'POST', 
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -70,16 +70,14 @@ function Login() {
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data);
-                if (data.message === 'Login haha') {
-                    Toastify({
-                        text: 'This is a toast',
-                        duration: 3000,
-                    }).showToast();
-                }else{
-                    Toastify({
-                        text: 'huhu is a toast',
-                        duration: 3000,
-                    }).showToast();
+                if (data.status === 'success') {
+                    localStorage.setItem('datatoken', JSON.stringify(data.data.access_token));
+                    localStorage.setItem('datauser', JSON.stringify(data.data.user));
+                    window.location.href='http://localhost:3000/dashboard'
+                } else {
+                    toast.success(data.message, {
+                        position: toast.POSITION.TOP_RIGHT
+                      });
                 }
             })
             .catch((error) => {
@@ -87,9 +85,8 @@ function Login() {
             });
 
         dispatch(responseLogin({ data }));
-        localStorage.setItem('data',JSON.stringify(data))
     };
-// 12345678
+    // 12345678
     return (
         <>
             <div className="login-form">
@@ -200,6 +197,7 @@ function Login() {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </>
     );
 }
