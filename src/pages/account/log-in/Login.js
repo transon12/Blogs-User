@@ -9,8 +9,8 @@ import FacebookLogin from 'react-facebook-login';
 import { useDispatch, useSelector } from 'react-redux';
 import { responseSuccess } from '../../../redux/login/actions';
 import { responseLogin } from '../../../redux/login/actions';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import Password from 'antd/lib/input/Password';
 function Login() {
     const [form] = Form.useForm();
@@ -73,7 +73,7 @@ function Login() {
                 if (data.status === 'success') {
                     localStorage.setItem('datatoken', JSON.stringify(data.data.access_token));
                     localStorage.setItem('datauser', JSON.stringify(data.data.user));
-                    window.location.href='http://localhost:3000/dashboard'
+                    // window.location.href='http://localhost:3000/dashboard'
                 } else {
                     toast.success(data.message, {
                         position: toast.POSITION.TOP_RIGHT
