@@ -1,89 +1,207 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
-import { Form, Col, Row } from 'antd';
-//actions
-import { resetAuth, loginUser } from '../../../redux/actions';
-import { useQuery } from '../../../hooks';
 import './style.scss';
-import LoginButton from '../login-google/LoginButton';
-import Lottie from 'react-lottie';
-import wellcomJson from './../../../assets/animation/welcome.json';
+import React, { useState } from 'react';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Checkbox, Form, Input } from 'antd';
+import image from '../../../assets/images/login/Image.png';
+import image1 from '../../../assets/images/login/Vector.png';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
+import { useDispatch, useSelector } from 'react-redux';
+import { responseSuccess } from '../../../redux/login/actions';
+import { responseLogin } from '../../../redux/login/actions';
+import Toastify from 'toastify-js';
+import Password from 'antd/lib/input/Password';
+function Login() {
+    const [form] = Form.useForm();
+    const [, forceUpdate] = useState({});
+    const [username, setUserName] = useState();
+    const [useremail, setUserEmail] = useState();
+    const [profile, setProfile] = useState(null);
+    const [error, setError] = useState('');
 
-const Login = () => {
-    const { t } = useTranslation();
     const dispatch = useDispatch();
-    const history = useHistory();
-    const query = useQuery();
-    const next = query.get('next');
+    const userData = useSelector((state) => state.Login.userInformation);
+    console.log(userData);
 
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: wellcomJson,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
-        },
+    // const data = [
+    //     {
+    //         id: 1,
+    //         name: 'nguyen truong an',
+    //         password: '123456',
+    //     },
+    //     {
+    //         id: 2,
+    //         name: 'dang tan dung',
+    //         password: '123456',
+    //     },
+    // ];
+
+    const pass = (googleData) => {
+        console.log(googleData);
+        setUserName(googleData.profileOnj.name);
     };
 
-    useEffect(() => {
-        dispatch(resetAuth());
-    }, [dispatch]);
-
-    const { loading, userLoggedIn, user, error } = useSelector((state) => ({
-        loading: state.Auth.loading,
-        user: state.Auth.user,
-        error: state.Auth.error,
-        userLoggedIn: state.Auth.userLoggedIn,
-    }));
-
-    /*
-    handle form submission
-    */
-    const onFinish = (formData) => {
-        dispatch(loginUser(formData['username'], formData['password']));
+    const fail = (result) => {
+        console.log(result.error);
+    };
+    const responseFacebook = (response) => {
+        console.log(response);
+        setProfile(response.data);
+        dispatch(responseSuccess({ response }));
+    };
+    const componentClicked = (result) => {
+        console.log(result.error);
     };
 
-    const onFinishFailed = (errorInfo) => {};
+    const onFinish = (event) => {
+        console.log(event);
+        const data = {
+            email: event.email,
+            password: event.password,
+        };
+        console.log(data);
+        fetch('https://dev-api.rikkeiacademy.com/api/student/login', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+                if (data.message === 'Login haha') {
+                    Toastify({
+                        text: 'This is a toast',
+                        duration: 3000,
+                    }).showToast();
+                }else{
+                    Toastify({
+                        text: 'huhu is a toast',
+                        duration: 3000,
+                    }).showToast();
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
 
+        dispatch(responseLogin({ data }));
+        localStorage.setItem('data',JSON.stringify(data))
+    };
+// 12345678
     return (
-        <div className="container">
-            <div className="logIn">
-                {userLoggedIn || user ? <Redirect to={next ? next : '/me-list'}></Redirect> : null}
-                <Row style={{ height: '100%' }}>
-                    <Col xl={16} xs={0} justify="center" align="middle" className="welcome">
-                        <div>
-                            <Lottie width={'100%'} options={defaultOptions} />
-                            {/* <p className="text__40B_linear_gradient_welcome">{t('Welcome back!')}</p> */}
-                            {/*  <p className="title-description">
-                                {t('You can sign in to access with your existing account')}
-                            </p> */}
+        <>
+            <div className="login-form">
+                <div className="error">{error}</div>
+                <div className="narbar">
+                    <div className="icon-alen">
+                        <img src={image1} alt="" />
+                        <div className="alen-hepl">
+                            <label className="alen">alem</label>
+                            <label className="hepl">help</label>
                         </div>
-                    </Col>
-                    <Col xl={8} xs={24} justify="center" align="middle" className="log-in">
-                        <Form
-                            name="basic"
-                            initialValues={{ remember: true }}
-                            onFinish={onFinish}
-                            onFinishFailed={onFinishFailed}
-                            autoComplete="off"
-                            style={{ width: '100%' }}>
-                            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                <Form.Item>
-                                    <p className="text__40B_linear_gradient">{t('Sign In')}</p>
+                    </div>
+                    <div className="login-registe">
+                        <div className="resetto1">
+                            <button className="register">
+                                <ion-icon name="person-outline" />
+                                Register
+                            </button>
+                        </div>
+                        <div className="resetto2">
+                            <button className="loginpage">Login</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="form-tong">
+                    <div className="wew-login">
+                        <div className="from-nho1">
+                            <div className="we-mid">
+                                <p className="missed-you">We've Missed You!</p>
+                                <p className="more-than">
+                                    More than 150 questions are waiting for your wise suggestions
+                                </p>
+                            </div>
+                            <Form
+                                name="normal_login"
+                                className="login-form"
+                                initialValues={{
+                                    remember: true,
+                                }}
+                                onFinish={onFinish}>
+                                <Form.Item
+                                    name="email"
+                                    className="form-chu1"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Email!',
+                                        },
+                                    ]}>
+                                    <Input
+                                        prefix={<UserOutlined className="site-form-item-icon" />}
+                                        placeholder="Email"
+                                    />
                                 </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Password!',
+                                        },
+                                    ]}>
+                                    <Input
+                                        prefix={<LockOutlined className="site-form-item-icon" />}
+                                        type="password"
+                                        placeholder="Password"
+                                    />
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button type="primary" htmlType="submit" className="login-form-button">
+                                        Log in
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                            <div className="google-facebook">
+                                <div className="google">
+                                    <GoogleLogin
+                                        clientId="766994831553-kmvo31pkvvqgco22e7jld039jvfn5slo.apps.googleusercontent.com"
+                                        render={(renderProps) => (
+                                            <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                                                <ion-icon className="google-loginform" name="logo-google"></ion-icon>
+                                                Google
+                                            </button>
+                                        )}
+                                        buttonText="Login"
+                                        onSuccess={pass}
+                                        onFailure={fail}
+                                        cookiePolicy={'single_host_origin'}
+                                    />
+                                    ,
+                                </div>
+                                <div className="facebook">
+                                    <FacebookLogin
+                                        appId="741537744233850"
+                                        autoLoad={true}
+                                        fields="name,email,picture"
+                                        callback={responseFacebook}
+                                        cssClass="my-facebook-button-class"
+                                        icon="fa-facebook"
+                                    />
+                                    ,
+                                </div>
                             </div>
-
-                            <div className="button-signin-with-google">
-                                <LoginButton />
-                            </div>
-                        </Form>
-                    </Col>
-                </Row>
+                        </div>
+                    </div>
+                    <div className="imagee-img">
+                        <img src={image} alt="" />
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
-};
+}
 
 export default Login;
