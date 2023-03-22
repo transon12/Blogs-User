@@ -20,6 +20,11 @@ export default function userInforReducer(state = initialState, actions) {
                 ...state,
                 posts: actions.payload.data,
             };
+        case MeTypes.FORGOT_PASSWORD:
+            return {
+                ...state,
+                payload: actions.payload.data
+            }
     }
     return state;
 }

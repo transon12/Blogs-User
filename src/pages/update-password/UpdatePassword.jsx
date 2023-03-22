@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import NavbarLeft from '../../components/navbarLeft/NavbarLeft';
 import './UpdatePassword.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { forgotPassword, PostUser } from '../../redux/userInformation/actions';
 
 const UpdatePassword = () => {
+    
+    const dispatch = useDispatch()
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -15,37 +19,51 @@ const UpdatePassword = () => {
         return pattern.test(password);
     };
 
-    const handleChange = (event) => {
-        const password = event.target.value;
-        console.log(password);
-        setNewPassword(password);
-        if (!validatePassword(password)) {
-            setErrorMessage('Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.');
-        } else {
-            setErrorMessage('');
-        }
-    };
+    // const handleChange = (event) => {
+    //     const password = event.target.value;
+    //     console.log(password);
+    //     setNewPassword(password);
+    //     if (!validatePassword(password)) {
+    //         setErrorMessage('Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.');
+    //     } else {
+    //         setErrorMessage('');
+    //     }
+    // };
+    // console.log(oldPassword);
+    // console.log(newPassword);
+    // console.log(confirmNewPassword);
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        setError('');
-        setSuccess('');
+        // setError('');
+        // setSuccess('');
 
         // if (oldPassword !== 'password') {
         //     setError('Mật khẩu cũ không đúng.');
         //     return;
         // }
 
-        if (!validatePassword(newPassword)) {
-            return setError('Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.');
-        }
+        // if (!validatePassword(newPassword)) {
+        //     return setError('Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.');
+        // }
 
-        if (newPassword !== confirmNewPassword) {
-            setError('Mật khẩu mới và xác nhận mật khẩu mới không khớp nhau.');
-            return;
-        }
+        // if (newPassword !== confirmNewPassword) {
+        //     return setError('Mật khẩu mới và xác nhận mật khẩu mới không khớp nhau.');
+        // }
+        // if(!oldPassword && !newPassword && !confirmNewPassword){
+        //     return (
+        //         setError("Bạn chưa có sự thay đổi về mật khẩu")
+        //     )
+        // }
+        // setSuccess('Mật khẩu đã được thay đổi thành công.');
 
-        setSuccess('Mật khẩu đã được thay đổi thành công.');
+        // if (success) {
+                    
+        // }
+           dispatch(forgotPassword({oldPassword, newPassword, confirmNewPassword})) 
     };
+
     return (
         <div className="update-password">
             <NavbarLeft />
@@ -60,7 +78,9 @@ const UpdatePassword = () => {
                             </p>
                         </div>
                         <div className="container-small">
-                            <form onSubmit={handleSubmit}>
+                            <form 
+                            onSubmit={handleSubmit}
+                            >
                                 {error && <div style={{ color: 'red' }}>{error}</div>}
                                 {success && <div style={{ color: 'green' }}>{success}</div>}
                                 <label className="input-password">
@@ -74,7 +94,7 @@ const UpdatePassword = () => {
                                 <br />
                                 <label className="input-password">
                                     <p>* Mật khẩu mới</p>
-                                    <input type="password" value={newPassword} onChange={handleChange} />
+                                    <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                                 </label>
                                 <br />
                                 <label className="input-password">
