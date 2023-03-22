@@ -1,6 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 
 .listOfArticles {
+    background-color: #a1a8a80d;
+    height: 100%;
 
     // --------------- toolbar -----------------
     .toolbar {
@@ -24,7 +26,7 @@
     // --------------------- list-post -----------------------
     .list-post {
         display: flex;
-        margin-top: -38%;
+        margin-top: 2%;
         margin-left: 1%;
         margin-right: 1%;
 
@@ -61,12 +63,12 @@
             }
 
             tbody:hover {
-                background-color: #a1a8a80d;
+                background-color: #9ea0a00d;
             }
 
             .pagination {
                 padding: 10%;
-                margin-left: 616%;
+                margin-left: 488%;
             }
 
             ul.ant-pagination {

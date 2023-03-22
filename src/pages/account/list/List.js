@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const List = () => {
     return (
         <>
-            <body className="toolbar">
+            <div className="toolbar">
                 <span>
                     <Link className="link" to="#">
                         Home page
@@ -14,7 +14,7 @@ const List = () => {
                         List of articles
                     </Link>
                 </span>
-            </body>
+            </div>
         </>
     );
 };

@@ -2,14 +2,6 @@ import { MeTypes } from './constants';
 
 const initialState = [
     {
-        id: 28,
-        title: 'It',
-        description: 'Ngành iT',
-        content: '<p>CNTT</p>',
-        avatar: 'materials/1678869897_oiUzwycMdv2SKclH.jpg',
-        tag: null,
-        slug: 'it - 1678869924025',
-
         loading: false,
         error: null,
         showError: false,
@@ -24,6 +16,7 @@ const reducers = (state = initialState, action) => {
                     return {
                         ...state,
                         loading: false,
+                        posts: action.payload.data.data.listPosts,
                     };
                 default:
                     return state;

@@ -1,11 +1,12 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { MeTypes } from './constants';
-import { responseSuccess, responseError } from './action';
+import { responseSuccess, responseError, getAllPost } from './action';
 import { getListPostApi } from '../../helpers/api/postApi';
 
 function* getListPost({ payload: { params } }) {
     try {
-        const response = yield call(getListPostApi, params);
+        const response = yield call(getListPostApi);
+        console.log(response);
         if (response.status === 200) {
             const data = response.data ? response.data : null;
             yield put(responseSuccess(MeTypes.GET_ALL_POST, data));
