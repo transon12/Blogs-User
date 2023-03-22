@@ -1,62 +1,183 @@
-@import '../../../assets/scss/custom/variables';
-
-.logIn {
+// @import url('../../assets/scss/custom/_variables.scss');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.login-form {
     width: 100%;
     height: 100%;
-    justify-content: center;
 }
-.container {
-    display: flex;
-    height: 100vh;
-    background-image: url(../../../assets/images/login/background-dep-5.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 50px 50px 50px 50px;
-    @media screen and (max-width: 500px) {
-        padding: 0
-        
-    }
-}
-.welcome {
-    background-image: url(../../../assets/images/login/background-dep-2.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-}
-.container .ant-btn {
-    padding: 0px 5px;
-}
-.log-in {
-    justify-content: center;
-    flex-direction: row;
+.narbar {
+    width: 100%;
+    border: 1px solid #eaeaea;
     align-items: center;
     display: flex;
-    background-image: url(../../../assets/images/login/pexels-karolina-grabowska-4464438.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+    justify-content: space-between;
 }
-.title-description {
+.icon-alen {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.alen-hepl {
+    display: flex;
+    align-items: center;
+}
+.icon-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.icon-logo img {
+    width: 70%;
+}
+.alen-hepl .alen {
+    font-size: 1.5vw;
+    color: black;
+    font-weight: 500;
+    margin-left: 15%;
+}
+.alen-hepl .hepl {
+    font-size: 1.5vw;
+    padding-left: 2%;
+    color: black;
     font-weight: 700;
-    text-align: center;
-    font-size: 15px;
-    font-family: Hack, sans-serif;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #000, #fff, #000);
-    letter-spacing: 5px;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 80%;
-    animation: abc 5s linear infinite;
 }
-@keyframes abc {
-    0% {
-        background-position-x: -500%;
+.login-registe {
+    display: flex;
+    margin-top: 1%;
+    padding-bottom: 1%;
+    width: 20%;
+    gap: 15px;
+    align-items: center;
+}
+.resetto1 .register {
+    color: white;
+    display: flex;
+    font-size: 1.2vw;
+    background-color: #f48023;
+    border-radius: 5%;
+    padding: 1% 5% 2% 5%;
+    align-items: center;
+    border: none;
+}
+.resetto2 .loginpage {
+    border: none;
+    font-size: 1.2vw;
+    border-radius: 5%;
+    background-color: #eaeaea;
+    color: #1682fd;
+    padding: 1% 5% 2% 5%;
+}
+ .form-tong {
+    width: 100%;
+   height: 100%;
+     display: flex;
+ }
+ .wew-login {
+     width: 50%;
+     background-color: #e5e5e5;
+ }
+.from-nho1 {
+    width: 50%;
+    margin: auto;
+    margin-top: 15%;
+    .google-facebook{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 5%;
+        margin-left: 4%;
     }
-    100% {
-        background-position-x: 500%;
+}
+
+.we-mid .missed-you {
+    font-size: 2vw;
+    font-weight: 700;
+}
+.we-mid .more-than {
+    font-size: 1.2vw;
+    font-weight: 400;
+}
+.imagee-img {
+    width: 50%;
+}
+.imagee-img img {
+    width: 100%;
+}
+.facebook{
+    width: 50%;
+}
+.google{
+    width: 50%;
+}
+.google .ionicon {
+    font-size: 1vw;
+}
+.google button{
+    padding: 7% 5% 7% 5%;
+    background-color: #f0f3f7;
+    border-radius: 5px;
+    font-weight: 500;
+    color: rgb(91, 136, 233);
+    border: none;
+    gap: 5px;
+    justify-content: space-evenly;
+    width: 80%;
+    font-size: 1vw;
+   display: flex;
+   align-items: center;
+}
+.facebook button{
+    padding: 0% 5% 0% 5%;
+    background-color: #f0f3f7;
+    border-radius: 5px;
+    font-weight: 500;
+    color: rgb(91, 136, 233);
+    border: none;
+    gap: 5px;
+    justify-content: space-evenly;
+    width: 80%;
+    font-size: 1vw;
+   display: flex;
+   align-items: center;
+}
+.login-form-button{
+    width: 100%;
+    font-size: 1vw;
+}
+
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
+  }
+  #components-form-demo-normal-login .login-form-forgot {
+    float: right;
+  }
+  #components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
+    float: left;
+  }
+  #components-form-demo-normal-login .login-form-button {
+    width: 100%;
+  }
+
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+    .form-tong {
+        display: flex;
+        flex-direction: column; 
+         align-items: center; 
+    }
+    .wew-login{
+        width: 100%;
+    }
+    .imagee-img{
+        width: 100%;
+    }
+    .narbar{
+      display: none;
     }
 }

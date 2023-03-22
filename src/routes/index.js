@@ -25,8 +25,7 @@ const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
 const rootRoute = {
     path: '/',
     exact: true,
-    component: () => <Redirect to="/dashboard" />,
-    route: PrivateRoute,
+    component: () => <Redirect to="/login" />,
 };
 
 // dashboards
@@ -37,6 +36,8 @@ const dashboardRoutes = [
         component: Dashboard,
         // route: PrivateRoute,
         route: Route,
+        route: PrivateRoute,
+        roles: [ROLES.DLEAD],
     },
     {
         path: '/account',
@@ -46,7 +47,7 @@ const dashboardRoutes = [
         roles: Route,
     },
 ];
-const dashboardUesr = [
+const dashboardUser = [
     {
         path: '/homeuser',
         name: 'Trang chủ',
@@ -74,6 +75,8 @@ const dashboardUesr = [
         icon: 'fa-solid fa-key',
         component: UpdatePassword,
         route: Route,
+        route: PrivateRoute,
+        roles: [ROLES.MEMBER, ROLES.DLEAD],
     },
 ];
 
@@ -153,10 +156,12 @@ const authRoutes = [
 ];
 
 // All routes
-const authProtectedRoutes = [...dashboardUesr];
+const authProtectedRoutes = [...dashboardUser];
 const publicRoutes = [...dashboardRoutes];
+const loginRoutes = [...authRoutes];
 
 const authProtectedFlattenRoutes = flattenRoutes([...authProtectedRoutes]);
 const publicProtectedFlattenRoutes = flattenRoutes([...publicRoutes]);
+const publicLoginPage = flattenRoutes([...loginRoutes]);
 
-export { publicRoutes, authProtectedRoutes, authProtectedFlattenRoutes, publicProtectedFlattenRoutes };
+export { publicRoutes, authProtectedRoutes, authProtectedFlattenRoutes, publicProtectedFlattenRoutes, publicLoginPage };
