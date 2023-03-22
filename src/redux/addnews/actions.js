@@ -6,7 +6,7 @@ export const responseAdd= (data) => ({
     payload: data,
 });
 
-export const postContent = (data) => ({
-    type: MeTypes.POST_CONTENT,
-    payload: data,
-})
+// export const postContent = (data) => ({
+//     type: MeTypes.POST_CONTENT,
+//     payload: data,
+// })

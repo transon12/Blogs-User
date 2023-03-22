@@ -4,32 +4,32 @@ import LeftSidebar from '../../layouts/components/menu-top/left-side-bar/LeftSid
 import './add_news.scss';
 import { Select, Space } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { responseAdd } from '../../redux/addnews/actions';
+import { postContent, responseAdd } from '../../redux/addnews/actions';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import BoldPlugin from '@ckeditor/ckeditor5-basic-styles/src/bold';
 
 
 const Add_news = () => {
     const [category, setCategory] = useState("")
     const [title, setTitle] = useState("")
-    // const [select, setSelect] = useState("")
+    const [editor, setEditor] = useState("")
     const [titleSlug, setTitleSlug] = useState("")
     const [img, setImg] = useState("")
     const [content, setContent] = useState("")
 
-    useEffect(()=>{
+    useEffect(() => {
         setTitleSlug(to_slug(title))
     })
 
     const dispatch = useDispatch();
     const userData = useSelector((state) => state.addNews);
     console.log("userData--->", userData);
-    console.log(userData.content);
 
     const handleimage = () => {
         console.log("image");
     }
-console.log(content);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(responseAdd({ category, title, titleSlug, img, content }));
@@ -63,6 +63,7 @@ console.log(content);
         // return
         return str;
     }
+
 
     return (
         <>
@@ -98,33 +99,31 @@ console.log(content);
                     <input
                         type={"text"}
                         value={titleSlug}
-                        onChange={()=>setTitleSlug(to_slug(title))}
+                        onChange={() => setTitleSlug(to_slug(title))}
                     />
                 </div>
 
                 <form>
                     <div className="input-addnew-tybe">
                         <CKEditor
-                        editor={ClassicEditor}
-                        data={content}
-                        onReady={(editor) => {
-                            editor.editing.view.change((write)=>{
-                                write.setStyle('height', '14rem', editor.editing.view.document.getRoot())
-                            })
-                        }}
-                        onChange={(event, editor) =>{
-                            const data = editor.getData()
-                            console.log( { event, editor, data } );
+                            editor={ClassicEditor}
+                            config={['bold', 'italic']}
+                            data={content}
+                            onReady={editor => {
+                                // You can store the "editor" and use when it is needed.
+                                console.log('Editor is ready to use!', editor);
+                                // Insert the toolbar before the editable area.
 
-                            setContent(data)
-                        }}
-                       
-                        >
+                            }}
+                            onChange={(event, editor) => {
 
-                        </CKEditor>
-                      
+                                const data = editor.getData();
+                                setContent(data)
+                            }}
+                        />
 
                     </div>
+
                     <div className="button-add-new">
                         <div className="add-image">
                             <button value={img} type='file' name='file' onClick={handleimage}>
