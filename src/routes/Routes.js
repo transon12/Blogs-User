@@ -10,8 +10,9 @@ import VerticalLayout from '../layouts/Vertical';
 import DetachedLayout from '../layouts/Detached';
 import HorizontalLayout from '../layouts/horizontal';
 import LayoutDefaut from '../layouts/LayoutDefault';
+import LoginPage from '../layouts/loginPage';
 
-import { authProtectedFlattenRoutes, publicProtectedFlattenRoutes } from './index';
+import { authProtectedFlattenRoutes, publicProtectedFlattenRoutes, publicLoginPage } from './index';
 
 const Routes = (props) => {
     const { layout, user } = useSelector((state) => ({
@@ -79,6 +80,25 @@ const Routes = (props) => {
                             })}
                         </Switch>
                     </LayoutDefaut>
+                </Route>
+                <Route path={publicLoginPage.map((r) => r['path'])}>
+                    <LoginPage {...props} layout={layout} user={user}>
+                        <Switch>
+                            {publicLoginPage.map((route, index) => {
+                                return (
+                                    !route.children && (
+                                        <route.route
+                                            key={index}
+                                            path={route.path}
+                                            roles={route.roles}
+                                            exact={route.exact}
+                                            component={route.component}
+                                        />
+                                    )
+                                );
+                            })}
+                        </Switch>
+                    </LoginPage>
                 </Route>
             </Switch>
         </BrowserRouter>
