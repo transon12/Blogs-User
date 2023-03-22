@@ -14,7 +14,10 @@ const ForgetPassword = React.lazy(() => import('../pages/account/fotgot-password
 const Confirm = React.lazy(() => import('../pages/account/confirm/Confirm'));
 const ChangePass = React.lazy(() => import('../pages/account/change-password/ChangePass'));
 const Information = React.lazy(() => import('../pages/account/information/Information'));
-
+const Individual = React.lazy(() => import('../pages/individual/Individual'));
+const UpdateUser = React.lazy(() => import('../pages/update-user/UpdateUser'));
+const UpdatePassword = React.lazy(() => import('../pages/update-password/UpdatePassword'));
+// const PostUser = React.lazy(() => import('../pages/posts-user/PostUser'));
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
 
@@ -31,6 +34,8 @@ const dashboardRoutes = [
         path: '/dashboard',
         name: 'Dashboard',
         component: Dashboard,
+        // route: PrivateRoute,
+        route: Route,
         route: PrivateRoute,
         roles: [ROLES.DLEAD],
     },
@@ -38,6 +43,38 @@ const dashboardRoutes = [
         path: '/account',
         name: 'Acount',
         component: Information,
+        // route: PrivateRoute,
+        roles: Route,
+    },
+];
+const dashboardUser = [
+    {
+        path: '/homeuser',
+        name: 'Trang chủ',
+        icon: 'fa-solid fa-house',
+        component: Individual,
+        route: Route,
+    },
+    // {
+    //     path: '/post-user',
+    //     name: 'Thông tin cá nhân',
+    //     icon: 'fa-solid fa-user',
+    //     component: PostUser,
+    //     route: Route,
+    // },
+    {
+        path: '/update-user',
+        name: 'Update thông tin cá nhân',
+        icon: '',
+        component: UpdateUser,
+        route: Route,
+    },
+    {
+        path: '/change-password',
+        name: 'Đổi mật khẩu',
+        icon: 'fa-solid fa-key',
+        component: UpdatePassword,
+        route: Route,
         route: PrivateRoute,
         roles: [ROLES.MEMBER, ROLES.DLEAD],
     },
@@ -119,10 +156,12 @@ const authRoutes = [
 ];
 
 // All routes
-const authProtectedRoutes = [rootRoute, ...dashboardRoutes];
-const publicRoutes = [...authRoutes, ...otherPublicRoutes];
+const authProtectedRoutes = [...dashboardUser];
+const publicRoutes = [...dashboardRoutes];
+const loginRoutes = [...authRoutes];
 
 const authProtectedFlattenRoutes = flattenRoutes([...authProtectedRoutes]);
 const publicProtectedFlattenRoutes = flattenRoutes([...publicRoutes]);
+const publicLoginPage = flattenRoutes([...loginRoutes]);
 
-export { publicRoutes, authProtectedRoutes, authProtectedFlattenRoutes, publicProtectedFlattenRoutes };
+export { publicRoutes, authProtectedRoutes, authProtectedFlattenRoutes, publicProtectedFlattenRoutes, publicLoginPage };

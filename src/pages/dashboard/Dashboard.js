@@ -1,11 +1,17 @@
 import React from 'react';
-import MenuTop from '../../layouts/components/menu-top/MenuTop';
-import LeftSidebar from '../../layouts/components/menu-top/left-side-bar/LeftSidebar';
+import Individual from '../individual/Individual';
+import PostUser from '../posts-user/PostUser';
+import UpdatePassword from '../update-password/UpdatePassword';
+import UpdateUser from '../update-user/UpdateUser';
+
 const Dashboard = () => {
     return (
-        <>
-           <div>aaaaaaaaaaaaa</div>
-        </>
+        <div>
+            {/* <Individual/> */}
+            {/* <UpdatePassword/> */}
+            {/* <UpdateUser/> */}
+            {/* <PostUser /> */}
+        </div>
     );
 };
 

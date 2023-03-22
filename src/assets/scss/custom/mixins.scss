@@ -1,0 +1,79 @@
+@import './variables';
+@function breakpoints($breakpoint) {
+    @return map-get($grid-breakpoints, $breakpoint);
+  }
+$color: red;
+$family: blue;
+$background: #919191;
+$tomdu: #fff;
+
+$grid-breakpoints: (xxs: 0px,
+        xs: 481px,
+        sm: 768px,
+        smplus: 769px,
+        md: 992px,
+        lg: 1024px,
+        xl: 1200px,
+        xxl: 1450px,
+        xxxl: 1650px,
+);
+
+@mixin min-xxxl {
+    @media screen and (min-width: #{breakpoints(xxxl)}) {
+      @content;
+    }
+  }
+  
+  @mixin min-xxl {
+    @media screen and (min-width: #{breakpoints(xxl)}) {
+      @content;
+    }
+  }
+  
+  @mixin min-xl {
+    @media screen and (min-width: #{breakpoints(xl)}) {
+      @content;
+    }
+  }
+  
+  @mixin min-lg {
+    @media screen and (min-width: #{breakpoints(lg)}) {
+      @content;
+    }
+  }
+  
+  @mixin min-sm {
+    @media (min-width: #{breakpoints(md)}) {
+      @content;
+    }
+  }
+  
+  @mixin min-sm {
+    @media (min-width: #{breakpoints(sm)}) {
+      @content;
+    }
+  }
+  
+  @mixin min-smplus {
+    @media (min-width: #{breakpoints(sm)} + 1px) {
+      @content;
+    }
+  }
+  
+  @mixin min-xs {
+    @media screen and (min-width: #{breakpoints(xs)}) {
+      @content;
+    }
+  }
+  
+  @mixin min-xxs {
+    @media screen and (max-width: #{breakpoints(xxs)}) {
+      @content;
+    }
+  }
+  
+  @mixin center-xxl-xl {
+    @media screen and (max-width: #{breakpoints(xxxl)}) and (min-width: #{breakpoints(xl)}){
+      @content;
+    }
+  }

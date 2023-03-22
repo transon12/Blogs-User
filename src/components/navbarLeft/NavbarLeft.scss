@@ -1,0 +1,184 @@
+@import '../../assets/scss/custom/mixins.scss';
+
+
+
+.individual-1{
+    width: 25%;
+    height: 100%;
+    /* border: 1px solid red; */
+    border-right: 1px solid rgb(155, 155, 155);
+    i{
+        color: rgb(116, 114, 114);
+    }
+    .individual-1-1{
+        width: 100%;
+        height: 50px;
+        /* border: 1px solid red; */
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        &:hover{
+            cursor: pointer;
+            color: rgb(2, 218, 247);
+            background: rgb(212, 252, 243);
+            transition: all 0.5s;
+        }
+        &:hover i{
+        color: rgb(2, 218, 247);
+        transition: all 0.5s;
+       }
+       span{
+        margin-left: 10px;
+        font-size: 18px;
+        :hover{
+            color: rgb(2, 218, 247);
+            background: rgb(228, 255, 249);   
+        }
+    }  
+    }
+    .individual-1-2{
+        .information{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 40px;
+            // border: 1px solid blue;
+            align-items: center;
+            padding-left: 10px ;
+            padding-right: 15px;
+            &:hover{
+                cursor: pointer;
+                color: rgb(2, 218, 247);
+                background: rgb(212, 252, 243);
+                transition: all 0.5s;
+            }
+            &:hover i{
+            color: rgb(2, 218, 247);
+            transition: all 0.5s;
+           }
+           span{
+                 margin-left: 10px;
+            }
+            i{
+                font-size: 15px;
+            }
+            .information-2{
+                i{
+                    font-size: 10px;
+                }
+            }
+        }
+        .detail{
+            width: 100%;
+            height: 120px;
+            /* border: 1px solid black; */
+            // margin: auto;
+            :hover{
+                cursor: pointer;
+                color: rgb(2, 218, 247);
+                background: rgb(212, 252, 243);
+                transition: all 0.5s;
+            }
+            :hover i{
+                color: rgb(2, 218, 247);
+                transition: all 0.5s;
+            }
+            .detail-1{
+                width: 100%;
+                height: 40px;
+                padding: 0 40px;
+                display: flex;
+                align-items: center;
+                span{
+                    margin-left: 10px;
+                    font-size: 15px; 
+                }
+            }
+        }        
+    }
+    .individual-1-3{
+        width: 100%;
+        height: 80px;
+        /* border: 1px solid red; */
+        :hover{
+            cursor: pointer;
+            color: rgb(2, 218, 247);
+            background: rgb(212, 252, 243);
+            transition: all 0.5s;
+        }
+        :hover i{
+            color: rgb(2, 218, 247);
+            transition: all 0.5s;
+        }
+        .security{
+            width: 100%;
+            height: 40px;
+            /* border: 1px solid red; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 15px;
+            .security-2{
+                i{
+                    font-size: 10px;
+                }
+            }
+            span{
+                margin-left: 10px;
+            }
+        }
+        .key{
+            width: 100%;
+            height: 40px;
+            /* border: 1px solid black; */
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            span{
+                margin-left: 10px;
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+
+.active{
+    color: rgb(2, 218, 247) !important;
+}
+
+// .individual-1{
+//     display: none;
+// }
+
+/* Mobile: width < 740px*/
+
+// @include max-sm(){
+//     .individual-1{
+        
+//     }
+// }
+
+/* Table: width >=740px and width < 1024px*/
+
+// @include center-xxl-xl{
+//     .individual-1{
+        
+//     }
+// }
+
+/* PC : width >=1024px */
+// @include min-lg (){
+//     .individual-1{
+//         // display: block;
+//         color: red;
+//     }
+// }
+
+
+
+
+
+
+
