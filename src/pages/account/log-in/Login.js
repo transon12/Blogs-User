@@ -1,5 +1,5 @@
 import './style.scss';
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 import image from '../../../assets/images/login/Image.png';
@@ -9,7 +9,9 @@ import FacebookLogin from 'react-facebook-login';
 import { useDispatch, useSelector } from 'react-redux';
 import { responseSuccess } from '../../../redux/login/actions';
 import { responseLogin } from '../../../redux/login/actions';
+import { responseRequet } from '../../../redux/login/actions';
 import Password from 'antd/lib/input/Password';
+import loginpostSaga from '../../../redux/login/saga';
 
 import { notification } from 'antd';
 function Login() {
@@ -25,18 +27,8 @@ function Login() {
     const userData = useSelector((state) => state.Login.userInformation);
     console.log(userData);
 
-    // const data = [
-    //     {
-    //         id: 1,
-    //         name: 'nguyen truong an',
-    //         password: '123456',
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'dang tan dung',
-    //         password: '123456',
-    //     },
-    // ];
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const pass = (googleData) => {
         console.log(googleData);
@@ -54,45 +46,57 @@ function Login() {
     const componentClicked = (result) => {
         console.log(result.error);
     };
+
+    const onClick = () => {
+        window.location.href = 'http://localhost:3000/dashboard';
+    };
+    useEffect(() => {
+        if (!unInfo) return;
+        localStorage.setItem('datatoken', JSON.stringify(unInfo.access_token));
+        localStorage.setItem('datauser', JSON.stringify(unInfo.user));
+        window.location.href = 'http://localhost:3000/dashboard';
+    }, []);
     const onFinish = (event) => {
-        console.log(event);
+        console.log(1);
         const data = {
             email: event.email,
             password: event.password,
         };
-        console.log(data);
-        fetch('https://dev-api.rikkeiacademy.com/api/student/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data);
-                if (data.status === 'success') {
-                    localStorage.setItem('datatoken', JSON.stringify(data.data.access_token));
-                    localStorage.setItem('datauser', JSON.stringify(data.data.user));
-                    // window.location.href='http://localhost:3000/dashboard'
-                    dispatch(responseLogin(data.data));
-                } else {
-                    notification.open({
-                        key,
-                        message: data.message,
-                    });
-                    // setTimeout(() => {
-                    //     notification.open({
-                    //         key,
-                    //         message: 'New Title',
-                    //         description: 'New description.',
-                    //     });
-                    // }, 1000);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+        dispatch(responseRequet(data));
+
+        // console.log(data);
+        // fetch('https://dev-api.rikkeiacademy.com/api/student/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(data),
+        // })
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         console.log('Success:', data);
+        //         if (data.status === 'success') {
+        //             localStorage.setItem('datatoken', JSON.stringify(data.data.access_token));
+        //             localStorage.setItem('datauser', JSON.stringify(data.data.user));
+        //              window.location.href='http://localhost:3000/dashboard'
+        //             dispatch(responseLogin(data.userId));
+        //         } else {
+        //             notification.open({
+        //                 key,
+        //                 message: data.message,
+        //             });
+        //             // setTimeout(() => {
+        //             //     notification.open({
+        //             //         key,
+        //             //         message: 'New Title',
+        //             //         description: 'New description.',
+        //             //     });
+        //             // }, 1000);
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.error('Error:', error);
+        //     });
     };
     // 12345678
     return (
@@ -147,6 +151,7 @@ function Login() {
                                     <Input
                                         prefix={<UserOutlined className="site-form-item-icon" />}
                                         placeholder="Email"
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </Form.Item>
                                 <Form.Item
@@ -161,6 +166,7 @@ function Login() {
                                         prefix={<LockOutlined className="site-form-item-icon" />}
                                         type="password"
                                         placeholder="Password"
+                                        onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </Form.Item>
                                 <Form.Item>
