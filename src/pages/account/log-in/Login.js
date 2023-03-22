@@ -9,9 +9,9 @@ import FacebookLogin from 'react-facebook-login';
 import { useDispatch, useSelector } from 'react-redux';
 import { responseSuccess } from '../../../redux/login/actions';
 import { responseLogin } from '../../../redux/login/actions';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import Password from 'antd/lib/input/Password';
+
+import { notification } from 'antd';
 function Login() {
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
@@ -19,8 +19,9 @@ function Login() {
     const [useremail, setUserEmail] = useState();
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState('');
-
+    const key = 'updatable';
     const dispatch = useDispatch();
+    const { unInfo } = useSelector((state) => state.Login);
     const userData = useSelector((state) => state.Login.userInformation);
     console.log(userData);
 
@@ -74,17 +75,24 @@ function Login() {
                     localStorage.setItem('datatoken', JSON.stringify(data.data.access_token));
                     localStorage.setItem('datauser', JSON.stringify(data.data.user));
                     // window.location.href='http://localhost:3000/dashboard'
+                    dispatch(responseLogin(data.data));
                 } else {
-                    // toast.success(data.message, {
-                    //     position: toast.POSITION.TOP_RIGHT
-                    //   });
+                    notification.open({
+                        key,
+                        message: data.message,
+                    });
+                    // setTimeout(() => {
+                    //     notification.open({
+                    //         key,
+                    //         message: 'New Title',
+                    //         description: 'New description.',
+                    //     });
+                    // }, 1000);
                 }
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
-
-        dispatch(responseLogin({ data }));
     };
     // 12345678
     return (
@@ -197,7 +205,6 @@ function Login() {
                     </div>
                 </div>
             </div>
-            {/* <ToastContainer /> */}
         </>
     );
 }
