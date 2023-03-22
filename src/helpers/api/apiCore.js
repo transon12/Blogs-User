@@ -39,7 +39,7 @@ axios.interceptors.response.use(
     }
 );
 
-const AUTH_SESSION_KEY = 'hyper_user';
+const AUTH_SESSION_KEY = 'datauser';
 
 /**
  * Sets the default authorization
