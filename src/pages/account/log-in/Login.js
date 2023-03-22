@@ -75,9 +75,9 @@ function Login() {
                     localStorage.setItem('datauser', JSON.stringify(data.data.user));
                     // window.location.href='http://localhost:3000/dashboard'
                 } else {
-                    toast.success(data.message, {
-                        position: toast.POSITION.TOP_RIGHT
-                      });
+                    // toast.success(data.message, {
+                    //     position: toast.POSITION.TOP_RIGHT
+                    //   });
                 }
             })
             .catch((error) => {
@@ -197,7 +197,7 @@ function Login() {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
+            {/* <ToastContainer /> */}
         </>
     );
 }

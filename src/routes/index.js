@@ -22,8 +22,7 @@ const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
 const rootRoute = {
     path: '/',
     exact: true,
-    component: () => <Redirect to="/dashboard" />,
-    route: PrivateRoute,
+    component: () => <Redirect to="/login" />,
 };
 
 // dashboards
@@ -32,16 +31,15 @@ const dashboardRoutes = [
         path: '/dashboard',
         name: 'Dashboard',
         component: Dashboard,
-        // route: PrivateRoute,
-        route: Route,
-        roles: [ROLES.DLEAD]
+        route: PrivateRoute,
+        roles: [ROLES.DLEAD],
     },
     {
         path: '/account',
         name: 'Acount',
         component: Information,
         route: PrivateRoute,
-        roles: [ROLES.MEMBER, ROLES.DLEAD]
+        roles: [ROLES.MEMBER, ROLES.DLEAD],
     },
 ];
 
