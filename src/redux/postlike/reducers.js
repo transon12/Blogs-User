@@ -1,55 +1,19 @@
 import { MeTypes } from './constants';
+
 const initialState = {
-    lists: [
-        {
-            id: 1,
-            img: 'https://tinhayvip.com/wp-content/uploads/2022/08/top-99-anh-gai-xinh-mac-bikini-mau-trang-15.jpg',
-            name: 'Nguyễn Trường An',
-            day: '2023/10/03 09:00:00 pm',
-            content: 'Bài viết này thật là hay rất ý nghĩa là oki',
-            like: 50,
-        },
-        {
-            id: 2,
-            img: 'https://image-us.24h.com.vn/upload/2-2021/images/2021-05-22/anh-8-1621645023-458-width650height813.jpg',
-            name: 'Nguyễn Thành A',
-            day: '2023/10/03 09:00:00 am',
-            content: 'Bài viết này rất hữu ích cho người dùng',
-            like: 70,
-        },
-        {
-            id: 3,
-            img: 'https://cdn.24h.com.vn/upload/2-2021/images/2021-05-22/anh-6-1621645023-899-width650height813.jpg',
-            name: 'Nguyễn Thành B',
-            day: '2023/10/03 04:00:00 pm',
-            content: 'Bài viết này rất hữu ích cho người dùng',
-            like: 10,
-        },
-        {
-            id: 4,
-            img: 'https://sohanews.sohacdn.com/160588918557773824/2021/4/9/photo-1-16179284279221192720520.jpg',
-            name: 'Nguyễn Thành C',
-            day: '2023/10/03 02:00:00 pm',
-            content: 'Bài viết này rất hữu ích cho người dùng',
-            like: 90,
-        },
-        {
-            id: 5,
-            img: 'https://s1.media.ngoisao.vn/resize_580/news/2022/02/06/gai-xinh-bikini-1-ngoisaovn-w678-h960.jpg',
-            name: 'Nguyễn Thành D',
-            day: '2023/10/03 05:00:00 pm',
-            content: 'Bài viết này rất hữu ích cho người dùng',
-            like: 30,
-        },
-        {
-            id: 6,
-            img: 'https://tinhayvip.com/wp-content/uploads/2022/12/anh-gai-xinh-mac-lot-khe-lo-ca-cap-dao-lo-ca-diem-g-7.jpg',
-            name: 'Nguyễn Thành E',
-            day: '2023/10/03 12:00:00 pm',
-            content: 'Bài viết này rất hữu ích cho người dùng',
-            like: 60,
-        },
-    ],
+    user: {
+        id: 1,
+        full_avatar_url:
+            'https://lms-rikkei-dev.s3.amazonaws.com/materials/1666147614_DyDrRirZQpOPtXfR.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQEO33HSBZRSFOXNE%2F20230323%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230323T034448Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=51cadad3fbf9e94153e69c3117156b8b9676c2c5c522c64442013c96a9e3a789',
+        name: 'admin',
+        created_at: '2023-03-15T08:45:26.000000Z',
+        content: '<p>CNTT</p>',
+        like: 50,
+
+        loading: false,
+        error: null,
+        showError: false,
+    },
 
     posts: [
         {
@@ -78,25 +42,57 @@ const initialState = {
         },
     ],
 };
-export default function postLike(state = initialState, action) {
+
+const reducers = (state = initialState, action) => {
     switch (action.type) {
-        case MeTypes.POST_LIKE: {
-            console.log(' POSTLIKE REDUCER OKE');
+        case MeTypes.RESPONSE_SUCCESS: {
+            switch (action.payload.actionType) {
+                case MeTypes.GET_ALL_POST:
+                    return {
+                        ...state,
+                        loading: false,
+                        posts: action.payload.data.data.listPosts,
+                    };
+                default:
+                    return state;
+            }
+        }
+        case MeTypes.RESPONSE_ERROR: {
+            switch (action.payload.actionType) {
+                case MeTypes.GET_ALL_POST:
+                    return {
+                        ...state,
+                        error: action.payload.error,
+                        showError: true,
+                        loading: false,
+                    };
+                default:
+                    return state;
+            }
+        }
+        case MeTypes.GET_ALL_POST: {
             return {
                 ...state,
-                img: action.payload,
-                name: action.payload,
-                day: action.payload,
-                content: action.payload,
+                loading: true,
+            };
+        }
+        case MeTypes.RESET_ERROR: {
+            return {
+                ...state,
+                error: null,
+                showError: false,
             };
         }
         case MeTypes.ADD_POSTS: {
             console.log(action.payload);
             return {
                 ...state,
-                lists: action.payload.param,
+                user: action.payload.param,
             };
         }
+        default:
+            return state;
     }
-    return state;
-}
+};
+
+export default reducers;

@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 import { ROLES } from '../constants/me';
-import Postlike from '../pages/account/postlike/Postlike';
 
 // lazy load all the views
 
@@ -18,6 +17,7 @@ const Information = React.lazy(() => import('../pages/account/information/Inform
 
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
+const Postlike = React.lazy(() => import('../pages/account/postlike/Postlike'));
 
 // root routes
 const rootRoute = {

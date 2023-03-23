@@ -65,7 +65,7 @@ const LockScreen = () => {
                         type="password"
                         name="password"
                         placeholder={t('Enter your password')}
-                        containerClass={'mb-3'}
+                        containerclassName={'mb-3'}
                     />
 
                     <div className="mb-0 text-center">
