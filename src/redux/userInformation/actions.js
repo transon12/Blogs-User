@@ -10,6 +10,7 @@ export const responseError = (actionType, error) => ({
     type: MeTypes.RESPONSE_ERROR,
     payload: { actionType, error },
 });
+
 export const uploadSuccess = (data) => ({
     type: MeTypes.UPDATE_PROFILE,
     payload: { data },
