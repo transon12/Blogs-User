@@ -33,7 +33,7 @@ const UpdatePassword = () => {
         // if (oldPassword !== 'password') {
         //     setError('Mật khẩu cũ không đúng.');
         //     return;
-        // }
+        // } 
 
         if (!validatePassword(newPassword)) {
             return setError('Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.');

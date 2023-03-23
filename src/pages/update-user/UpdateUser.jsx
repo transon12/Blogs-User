@@ -4,25 +4,43 @@ import './UpdateUser.scss';
 import { uploadSuccess } from '../../redux/userInformation/actions';
 import { DatePicker, Space, Select } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-
-
-
+import { act_get_user } from '../../redux/postInformation/actions';
+import { act_post_user } from '../../redux/postInformation/actions';
+import {useNavigate} from 'react-router-dom';
 
 const UpdateUser = () => {
     const [inputValueSex, setInputValueSex] = useState("")
 
     const handleChange = (value) => {
         setInputValueSex(`${value}`)
-        // console.log(`${value}`);
     };
     const dispatch = useDispatch();
-    const handleUpdate = (e) => {
-        e.preventDefault();
-        const inputValueNameUser = e.target.nameUser.value;
-        const inputValueDateUser = e.target.date.value;
-        dispatch(uploadSuccess({ username: inputValueNameUser, date:inputValueDateUser, sex: inputValueSex, img: 'abc.png' }));
-    };
-    let test = useSelector((state) => console.log(state.userInforReducer));
+    useEffect(()=>{
+        // const inputValueNameUser = e.target.nameUser.value;
+        // const inputValueDateUser = e.target.date.value;
+        dispatch(act_get_user(null));
+    },[])
+    let listUser = useSelector(state=>state.users)
+    let elementUser =listUser.map((user,index)=>{
+        return {
+
+        }   
+    })
+
+    const [dateTime, setDateTime] = useState()
+    const [fullName , setFullName] = useState()
+    const [sexUser, setSexUser] = useState()
+    const navigate = setNavigate;
+    const handleCreate =  ()=>{
+        dispatch(act_post_user ({dateTime, fullName , sexUser}))
+    }
+    // const handleUpdate = (e) => {
+    //     e.preventDefault(); 
+    //     const inputValueNameUser = e.target.nameUser.value;
+    //     const inputValueDateUser = e.target.date.value;
+    //     dispatch(uploadSuccess({ username: inputValueNameUser, date:inputValueDateUser, sex: inputValueSex, img: 'abc.png' }));
+    // };
+    // let test = useSelector((state) => console.log(state.userInforReducer));
     return (
         <div className="update-user">
             <NavbarLeft />
@@ -52,7 +70,7 @@ const UpdateUser = () => {
                             <form action="" onSubmit={handleUpdate}>
                                 <div className="update-Content-1-2-1">
                                     <p>Tên tài khoản</p>
-                                    <input type="text" value=" SơnTX" />
+                                    <input type="text" value="SơnTX" />
                                 </div>
                                 <div className="update-Content-1-2-2">
                                     <p>* Tên hiện thị</p>
@@ -75,10 +93,8 @@ const UpdateUser = () => {
                                                     width: 400,
                                                 }}
                                                 onChange={handleChange}
-                                                options={[
-                                                    
-                                                    {
-                                                        
+                                                options={[    
+                                                    { 
                                                         value: 'Nam',
                                                         label: 'Nam',
                                                     },
@@ -96,8 +112,8 @@ const UpdateUser = () => {
                                     </div>
                                 </div>
                                 <div className="update-Content-1-2-4">
-                                    <button>Hủy bỏ</button>
-                                    <button className="update-btn">Cập nhập</button>
+                                    <button type='submit'>Hủy bỏ</button>
+                                    <button type='submit' className="update-btn">Cập nhập</button>
                                 </div>
                             </form>
                         </div>
