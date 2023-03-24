@@ -18,11 +18,8 @@ export const responseError = (actionType, error) => {
 };
 
 // action get all post
-export const getAllPost = (data) => {
-    return {
-        type: MeTypes.GET_ALL_POST,
-        payload: data,
-    };
+export const getAllPost = (params) => {
+    return { type: MeTypes.GET_ALL_POST, payload: { params } };
 };
 
 //action reset error post

@@ -6,7 +6,6 @@ import { getListPostApi } from '../../helpers/api/postApi';
 function* getListPost({ payload: { params } }) {
     try {
         const response = yield call(getListPostApi);
-        console.log(response);
         if (response.status === 200) {
             const data = response.data ? response.data : null;
             yield put(responseSuccess(MeTypes.GET_ALL_POST, data));
