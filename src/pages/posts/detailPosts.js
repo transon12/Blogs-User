@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './list.scss';
-import { postsList } from '../../redux/posts-redux/post_actions';
-import { Link, Route, Redirect, useHistory } from 'react-router-dom';
+import { postsList, fetchData } from '../../redux/posts-redux/post_actions';
+import { Link, Route, Redirect, useHistory, useParams } from 'react-router-dom';
 import { commentContent, commentBasic, likeClicked, dislikeClicked } from '../../redux/comment-redux/comment_actions';
 import { useDispatch, useSelector } from 'react-redux';
-import  Mixin  from '../../assets/scss/custom/mixins.scss';
-
+import Mixin from '../../assets/scss/custom/mixins.scss';
+import { fetchDataSuccess } from '../../redux/posts-redux/post_actions';
 import {
     StarFilled,
     LikeFilled,
@@ -43,11 +43,15 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 );
 
 const Lists = () => {
+    const params = useParams();
+    const { postsInfo } = useSelector((state) => state.post_reducers);
     const states = useSelector((state) => state.comment);
     const [like, setLike] = useState(true);
     const [dislike, setDislike] = useState(false);
     const dispatch = useDispatch();
 
+    const [viewer, setViewer] = useState();
+    const [user, setUser] = useState();
     const [comments, setComments] = useState([]);
     const [submitting, setSubmitting] = useState(false);
     const [value, setValue] = useState('');
@@ -69,14 +73,18 @@ const Lists = () => {
         }, 1000);
         let list = comments;
 
-        console.log(list);
+        // console.log(list);
         dispatch(commentContent(list));
     };
     const handleChange = (e) => {
         setValue(e.target.value);
     };
+    useEffect(() => {
+        dispatch(fetchData(params));
+    }, []);
 
     const [Follow, setFollow] = useState('Theo dõi');
+    const [Color, setColor] = useState('#0571ED');
     const [status, setStatus] = useState(8887);
     const handleClickOne = () => {
         if (Follow === 'Theo dõi') {
@@ -88,6 +96,23 @@ const Lists = () => {
         }
     };
 
+    useEffect(() => {
+        if(!postsInfo?.postsDetail)
+        setUser(null);
+        else{
+           setUser( postsInfo?.postsDetail[0]?.user) 
+        }
+    }, [postsInfo]);
+    
+
+    useEffect(() => {
+        if(!postsInfo?.postsDetail)
+        setViewer(null);
+        else{
+           setViewer( postsInfo?.postsDetail[0]?.viewer) 
+        }
+    }, [postsInfo]);
+    
     const [Counter, setCounter] = useState('#AFB3B6');
     const [Total, setTotal] = useState(579);
     const handleClick = () => {
@@ -116,19 +141,37 @@ const Lists = () => {
             setQuantity(quantity - 1);
         }
     };
+    const renderPost = () => {
+        console.log(postsInfo);
+        if (!postsInfo) return <></>;
+        return (
+            <div>
+                {postsInfo?.postsDetail?.map((e, i) => (
+                    <div className="posts-list-content-title" key={i}>
+                        <b>{e?.title}</b>
+                        <img src={e.full_post_image_url} alt="" />
+                        <h5 className="p">{e.description}</h5>
+                        <p dangerouslySetInnerHTML={{ __html: e?.content }} />                        
+                        <p>{e?.slug}</p>
+                    </div>
+                    
+                ))}
+            </div>
+        );
+    };
 
     return (
         <div className="posts-list">
-            {states.page.map((e, i) => (
+            {states.page?.map((e, i) => (
                 <div className="posts-list-details">
                     <div className="posts-list-avata-name">
                         <img
-                            src="https://khoinguonsangtao.vn/wp-content/uploads/2022/08/anh-hoat-hinh-buon.jpeg"
+                            src={user?.full_avatar_url}
                             className="img"
                             alt=""
                         />
                         <div className="posts-list-name">
-                            <h5>Nguyễn Thành Chung</h5>
+                            <h5>{user?.name}</h5>
                             <div className="posts-list-name-button-sao-user">
                                 <div className="posts-list-name-button">
                                     <button
@@ -144,7 +187,7 @@ const Lists = () => {
                                         className="saohong"
                                         onClick={handleClicktows}
                                         disabled={like ? 'disable' : ''}>
-                                        <DislikeFilled style={{ color: !dislike ? "#AFB3B6" : '#000000' }} />
+                                        <DislikeFilled style={{ color: !dislike ? '#AFB3B6' : '#000000' }} />
                                     </button>
                                     {quantity}k
                                 </div>
@@ -175,7 +218,7 @@ const Lists = () => {
                         <div className="posts-list-view-cmt-list">
                             <div className="posts-list-view">
                                 <EyeOutlined />
-                                {e.view}
+                                {viewer}
                             </div>
                             <div className="posts-list-view">
                                 <CommentOutlined />
@@ -189,22 +232,12 @@ const Lists = () => {
                     </div>
                 </div>
             ))}
-            {states.detail.map((e, i) => (
-                <div className="posts-list-content-title">
-                    <b>{e.title}</b>
-                    <h5 className="p">{e.content}</h5>
-                    <p>{e.content1}</p>
-                    <img src={e.img1} alt="" />
-                    <p>{e.content2}</p>
-                    <img src={e.img2} alt="" />
-                    <p>{e.content3}</p>
-                </div>
-            ))}
-            <div className='posts-list-content-evaluate'>
+            <hr/>
+            {renderPost()}
+            <div className="posts-list-content-evaluate">
                 Đánh giá:
-                <div className='posts-list-content-evaluate-sao'>
-                    
-                <Rate />
+                <div className="posts-list-content-evaluate-sao">
+                    <Rate />
                 </div>
             </div>
             <div className="posts-list-comment">

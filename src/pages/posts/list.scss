@@ -27,6 +27,8 @@
     padding: 3%;
     display: flex;
 }
+
+
 .posts-list-name-button-add{
     background-color: rgb(26, 107, 237);
     color: white;
@@ -84,9 +86,7 @@ margin-left: 120px;
     display: flex;
     
     margin-left: 150px;
-    width: 50%;
-    
-    
+    width: 50%; 
 }
 .posts-list-view{
     display: flex;
@@ -97,13 +97,22 @@ margin-left: 120px;
     
     
 }
-.posts-list-content-title{
+hr{
     width: 70%;
+   margin: auto;
+}
+.posts-list-content-title{
+    width: 50%;
+    height: 50%;
     padding: 5%;
     margin: auto;
 }
+.posts-list-content-title b{
+    font-size: 27px;}
 .posts-list-content-title img{
-    width: 100%;
+    width: 50%;
+    height: 50%;
+    margin-top: 20px;
 }
 .posts-list-content-title .p{
     margin-top: 30px;
