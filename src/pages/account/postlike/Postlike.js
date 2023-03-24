@@ -13,7 +13,6 @@ import { reponseAddlike } from '../../../redux/postlike/actions';
 function Postlike() {
     const dispatch = useDispatch();
     const listPosts = useSelector((state) => state.StoreListPost.posts);
-    console.log(listPosts);
     // const { posts } = useSelector((state) => state.postLike);
     const history = useHistory();
     const handleClick = () => {
@@ -73,7 +72,6 @@ function Postlike() {
     //     console.log(listPosts);
     //     dispatch(reponseAddlike(listnew));
     // };
-    console.log(listPosts);
     let PostList = listPosts?.data?.user?.map((post) => {
         return (
             <>
