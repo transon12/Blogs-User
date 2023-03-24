@@ -11,7 +11,11 @@ export function configureStore(initialState) {
     let store;
 
     if (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']) {
-        store = createStore(reducers, initialState, window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'](applyMiddleware(...middlewares)));
+        store = createStore(
+            reducers,
+            initialState,
+            window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'](applyMiddleware(...middlewares))
+        );
     } else {
         store = createStore(reducers, initialState, applyMiddleware(...middlewares));
     }
