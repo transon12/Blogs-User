@@ -5,6 +5,33 @@ const initialState = {
 };
 export default function userInforReducer(state = initialState, actions) {
     switch (actions.type) {
+        case MeTypes.RESPONSE_SUCCESS: {
+            console.log(actions.payload.actionType);
+            switch (actions.payload.actionType) {
+                case MeTypes.CHANGE_PASSWORD:
+                    return {
+                        ...state,
+                        payload: actions.payload.data,
+                        loading: false,
+                        passwordChange:true,
+                    }
+                default:
+                    return state;
+            }
+        }
+        case MeTypes.RESPONSE_ERROR: {
+            switch (actions.payload.actionType) {
+              case MeTypes.CHANGE_PASSWORD:
+                return {
+                    ...state,
+                    payload: actions.payload.error,
+                    loading: false,
+                    passwordChange: false,
+                }
+                default:
+                    return state;
+            }
+        }
         case MeTypes.UPDATE_PROFILE:
             return {
                 ...state, // lấy lại tất cả các state cũ
@@ -20,24 +47,11 @@ export default function userInforReducer(state = initialState, actions) {
                 ...state,
                 posts: actions.payload.data,
             };
-        case MeTypes.FORGOT_PASSWORD:{
-            console.log(actions);
-            return {
-                    ...state,
-                    payload: actions.payload
-                }
-            }
-            // case MeTypes.RESPONSE_SUCCESS:
-            // console.log(actions);
-            // console.log(actions.payload.actionType);
-            // switch (actions.payload.actionType){
-            //     case MeTypes.FORGOT_PASSWORD:{
-            //         return {
-            //             ...state,
-            //             payload: actions.payload
-            //         }
-            //     }
-            // }
+
+        default:
+            return state
     }
-    return state;
+
 }
+
+

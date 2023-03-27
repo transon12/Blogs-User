@@ -1,31 +1,25 @@
 import { MeTypes } from "./constants";
-import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
-import { forgotPassword, responseError } from "./actions";
-// import {responseSuccess,responseError} from "./actions"
-import axios from "axios";
+import { all, call, put, takeLatest } from "redux-saga/effects";
+import { responseSuccess, responseError } from './actions';
+import {changePasswordApi} from "../../helpers/api/meApi"
 
-function* forgotPasswordSaga({ payload: params }) {
-  console.log(params);
+function* changePassword ({ payload: { params } }){
   try {
-    let datatoken = window.localStorage.datatoken
-
-    console.log(datatoken);
-    const response = yield call(axios.post('https://dev-api.rikkeiacademy.com/api/student/change-password', {
-      old_password: params.data.oldPassword,
-      password: params.data.newPassword
+    const response = yield call(changePasswordApi, params);
+    if (response.status === 200) {
+      const data = response.data ? response.data : null;
+      console.log(data);
+      yield put(responseSuccess(MeTypes.CHANGE_PASSWORD, data));
     }
-    )
-    )
-    console.log(response);
-    // if(response.status === 200){
-    //   const data = response.data ? response.data : null;
-    //   yield put(forgotPassword({ actionType: MeTypes.FORGOT_PASSWORD, payload: data }))
-    // }
   } catch (error) {
-    yield put(responseError({ actionType: MeTypes.RESPONSE_ERROR, payload: error.message }));
+    console.log(error);
+    yield put(responseError(MeTypes.CHANGE_PASSWORD, error));
   }
+
 }
 function* postPasswordSaga() {
-  yield all([takeLatest(MeTypes.FORGOT_PASSWORD, forgotPasswordSaga)])
+  yield all([
+     takeLatest(MeTypes.CHANGE_PASSWORD, changePassword),])
 }
 export default postPasswordSaga;
+
