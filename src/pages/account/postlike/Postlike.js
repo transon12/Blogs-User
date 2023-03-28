@@ -6,6 +6,7 @@ import { Col, Row } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
+import moment from 'moment';
 
 const Postlike = () => {
     const dispatch = useDispatch();
@@ -69,98 +70,104 @@ const Postlike = () => {
 
     console.log(postList?.data?.listPosts?.data);
     return (
-        <div>
+        <div className="bodyPostList">
+            <div className="narbar-post">
+                <Search className="search-post" placeholder=" Search " allowClear onSearch={onSearch} />
+            </div>
+            <div className="new-post-top">
+                <div onClick={handleClicklist} class="col">
+                    <ion-icon name="time-outline"></ion-icon>New
+                </div>
+                <div class="col">
+                    <ion-icon name="arrow-redo-outline"></ion-icon>Top
+                </div>
+                <div onClick={handleClickhot} class="col">
+                    <ion-icon name="flame-outline"></ion-icon>Hot
+                </div>
+                <div class="col">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>Closed
+                </div>
+            </div>
             {!postList
                 ? ''
                 : postList?.data?.listPosts?.data.map((post) => {
                       return (
-                          <div className="container-postlike" key={post.id}>
-                              <div className="narbar-post">
-                                  <Search
-                                      className="search-post"
-                                      placeholder=" Search "
-                                      allowClear
-                                      onSearch={onSearch}
-                                  />
-                              </div>
-                              <div className="new-post-top">
-                                  <div onClick={handleClicklist} class="col">
-                                      <ion-icon name="time-outline"></ion-icon>New
-                                  </div>
-                                  <div class="col">
-                                      <ion-icon name="arrow-redo-outline"></ion-icon>Top
-                                  </div>
-                                  <div onClick={handleClickhot} class="col">
-                                      <ion-icon name="flame-outline"></ion-icon>Hot
-                                  </div>
-                                  <div class="col">
-                                      <ion-icon name="checkmark-circle-outline"></ion-icon>Closed
-                                  </div>
-                              </div>
-                              <Row className="postlike-app">
-                                  <Col span={14}>
-                                      <div className="postlike-bl">
-                                          <div className="postlike-a1">
-                                              <div className="postlike-img">
-                                                  <img src={post.full_post_image_url} />
-                                              </div>
-                                              <div className="postlike-d1">
-                                                  <p onClick={handleClick} className="postlike-name">
-                                                      {post.name}
-                                                  </p>
-                                                  <p className="postlike-thg">{post.created_at}</p>
-                                              </div>
-                                          </div>
-                                          <div className="postlike-d2">
-                                              <p>{post.content}</p>
-                                          </div>
-                                          <div className="postlike-botton">
-                                              <button onClick={handleClicktag('object_detection')} className="button1">
-                                                  Object java
-                                              </button>
-                                              <button onClick={handleClicktag('deep_learning')} className="button2">
-                                                  Deep learning
-                                              </button>
-                                              <button onClick={handleClicktag('computer_vision')} className="button3">
-                                                  Computer Vision
-                                              </button>
-                                              <button onClick={handleClicktag('javascript')} className="button4">
-                                                  {post.like}
-                                              </button>
-                                          </div>
-                                      </div>
-                                  </Col>
-                                  <Col span={10}>
-                                      <div className="postlike-chmn">
-                                          <div className="postlike-ch">
-                                              <p>DANH MỤC MỚI NHẤT</p>
-                                          </div>
-                                          <div className="postlike-content">
-                                              <div className="postlike-js">
-                                                  <p>{post.content}</p>
-                                              </div>
-                                              <div className="postlike-icon">
-                                                  <div className="postlike-label">
-                                                      <label>
-                                                          <ion-icon name="code-outline"></ion-icon>0
-                                                      </label>
-                                                      <label>
-                                                          <ion-icon name="checkmark-outline"></ion-icon>2
-                                                      </label>
-                                                      <label>
-                                                          <ion-icon name="eye-outline"></ion-icon>200
-                                                      </label>
-                                                      <label>
-                                                          <ion-icon name="chatbubble-ellipses-outline"></ion-icon>0
-                                                      </label>
+                          <>
+                              <div className="container-postlike" key={post.id}>
+                                  <Row className="postlike-app">
+                                      <Col span={14}>
+                                          <div className="postlike-bl">
+                                              <div className="postlike-a1">
+                                                  <div className="postlike-img">
+                                                      <img src={post.full_post_image_url} />
                                                   </div>
-                                                  <p>{post.name}</p>
+                                                  <div className="postlike-d1">
+                                                      <p onClick={handleClick} className="postlike-name">
+                                                          {post.name}
+                                                      </p>
+                                                      <p className="postlike-thg">
+                                                          {moment(post.created_at).format('MM/DD/YYYY h:mm a')}
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                              &nbsp;
+                                              <div
+                                                  className="postlike-d2"
+                                                  dangerouslySetInnerHTML={{ __html: post.title }}></div>
+                                              &nbsp;
+                                              <div className="postlike-botton">
+                                                  <button
+                                                      onClick={handleClicktag('object_detection')}
+                                                      className="button1">
+                                                      Object java
+                                                  </button>
+                                                  <button onClick={handleClicktag('deep_learning')} className="button2">
+                                                      Deep learning
+                                                  </button>
+                                                  <button
+                                                      onClick={handleClicktag('computer_vision')}
+                                                      className="button3">
+                                                      Computer Vision
+                                                  </button>
+                                                  <button onClick={handleClicktag('javascript')} className="button4">
+                                                      {post.like}
+                                                  </button>
                                               </div>
                                           </div>
-                                      </div>
-                                  </Col>
-                              </Row>
-                          </div>
+                                      </Col>
+                                      <Col span={10}>
+                                          <div className="postlike-chmn">
+                                              <div className="postlike-ch">
+                                                  <p>DANH MỤC MỚI NHẤT</p>
+                                              </div>
+                                              <div className="postlike-content">
+                                                  <div
+                                                      className="postlike-js"
+                                                      dangerouslySetInnerHTML={{ __html: post.description }}></div>
+                                                  &nbsp;
+                                                  <div className="postlike-icon">
+                                                      <div className="postlike-label">
+                                                          <label>
+                                                              <ion-icon name="code-outline"></ion-icon>0
+                                                          </label>
+                                                          <label>
+                                                              <ion-icon name="checkmark-outline"></ion-icon>2
+                                                          </label>
+                                                          <label>
+                                                              <ion-icon name="eye-outline"></ion-icon>200
+                                                          </label>
+                                                          <label>
+                                                              <ion-icon name="chatbubble-ellipses-outline"></ion-icon>0
+                                                          </label>
+                                                      </div>
+                                                      <p>{post.name}</p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </Col>
+                                  </Row>
+                              </div>
+                          </>
                       );
                   })}
         </div>
