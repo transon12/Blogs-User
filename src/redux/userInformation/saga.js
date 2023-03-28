@@ -8,8 +8,9 @@ function* changePassword ({ payload: { params } }){
     const response = yield call(changePasswordApi, params);
     if (response.status === 200) {
       const data = response.data ? response.data : null;
-      console.log(data);
       yield put(responseSuccess(MeTypes.CHANGE_PASSWORD, data));
+      
+
     }
   } catch (error) {
     console.log(error);

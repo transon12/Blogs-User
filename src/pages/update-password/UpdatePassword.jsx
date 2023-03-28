@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import NavbarLeft from '../../components/navbarLeft/NavbarLeft';
 import { changePassword } from '../../redux/userInformation/actions';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import './UpdatePassword.scss';
+import { Alert, Space, notification } from 'antd';
+import { useHistory } from 'react-router-dom';
+
 const UpdatePassword = () => {
+    const history = useHistory()
     const dispatch = useDispatch();
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [cancel, setCancel] = useState("")
+    // const [error, setError] = useState('');
+    // const [success, setSuccess] = useState('');
 
     const validatePassword = (password) => {
         const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -20,23 +22,59 @@ const UpdatePassword = () => {
     };
 
     const states = useSelector((states) => states);
-    console.log(states);
-    // useEffect(
-    //     console.log(states)
-    // )
+    const message = states.userInforReducer.payload;
+
+    const changePassSuccess = () => {
+        notification.success({
+            message: message.message,
+        });
+    };
+    const changePassError = () => {
+        notification.error({
+            message: message,
+        });
+    };
+
+    const validateChangePass = () => {
+        notification.error({
+            message: "Mật khẩu mới chưa trùng khớp"
+        })
+    }
+
+    const validateChangeError = () => {
+        notification.error({
+            message: "Mời bạn nhập lại mật khẩu"
+        })
+    }
+
+    useEffect(() => {
+        if (message) {
+            if (message.status) {
+                changePassSuccess();
+                // history.push("#")
+            } else {
+                changePassError();
+            }
+        }
+    }, [message]);
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        dispatch(
-            changePassword({old_password:oldPassword, password:newPassword})
-        );
+        if (newPassword === confirmNewPassword && oldPassword !== newPassword) {
+                event.preventDefault();
+            dispatch(changePassword({ old_password: oldPassword, password: newPassword }));
+        } else if(newPassword !== confirmNewPassword && oldPassword !== newPassword){
+            event.preventDefault();
+            validateChangePass()
+        } else {
+            event.preventDefault();
+            validateChangeError()
+        }
     };
 
     return (
         <div className="update-password">
             <NavbarLeft />
             <div className="update-password-1">
-
                 <div className="wap-password">
                     <div className="wap-password-1">
                         <div className="container-big">
@@ -47,9 +85,11 @@ const UpdatePassword = () => {
                             </p>
                         </div>
                         <div className="container-small">
-                            <form onSubmit={handleSubmit}>
-                                {error && <div style={{ color: 'red' }}>{error}</div>}
-                                {success && <div style={{ color: 'green' }}>{success}</div>}
+                            <form 
+                            // onSubmit={handleSubmit}
+                            >
+                                {/* {error && <div style={{ color: 'red' }}>{error}</div>} */}
+                                {/* {success && <div style={{ color: 'green' }}>{success}</div>} */}
                                 <label className="input-password">
                                     <p>* Mật khẩu hiện tại</p>
                                     <input
@@ -77,10 +117,15 @@ const UpdatePassword = () => {
                                     />
                                 </label>
                                 <br />
-                                <button type="submit" className="button-1">
+                                <button 
+                                type="submit" 
+                                className="button-1"
+                                value={cancel}
+                                onClick={()=> history.push("/")}
+                                >
                                     Hủy bỏ
                                 </button>
-                                <button type="submit" className="button-2">
+                                <button type="submit" className="button-2" onClick={handleSubmit}>
                                     Đổi mật khẩu
                                 </button>
                             </form>
