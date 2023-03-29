@@ -13,8 +13,6 @@ const UpdatePassword = () => {
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const [cancel, setCancel] = useState("")
-    // const [error, setError] = useState('');
-    // const [success, setSuccess] = useState('');
 
     const validatePassword = (password) => {
         const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;

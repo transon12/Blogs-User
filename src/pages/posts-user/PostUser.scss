@@ -51,7 +51,21 @@
             }
         }
     }
+    @media screen and (max-width: 1332px) {
+        .posts-user-2 {
+            display: none;
+        }
+      }
+      @media screen and (max-width: 1332px) {
+        .posts-user-1-1 button{
+            width: 50%;  
+            }
+            
+        
+      }
+     
     .posts-user-2{
+        // display: block;
         width: 25%;
         height: 60%;
         border: 1px solid rgb(197, 196, 196);

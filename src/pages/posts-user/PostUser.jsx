@@ -19,7 +19,7 @@ const PostUsers = () => {
     console.log(handlePostUser);
     return (
         <div className="posts-user">
-            <div className="posts-user-1" style={{ padding: '1rem'}}>
+            <div className="posts-user-1" style={{ padding: '1rem' }}>
                 <div className="selec-categories">
                     <Select
                         showSearch

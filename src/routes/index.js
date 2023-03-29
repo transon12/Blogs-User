@@ -17,7 +17,7 @@ const Information = React.lazy(() => import('../pages/account/information/Inform
 const Individual = React.lazy(() => import('../pages/individual/Individual'));
 const UpdateUser = React.lazy(() => import('../pages/update-user/UpdateUser'));
 const UpdatePassword = React.lazy(() => import('../pages/update-password/UpdatePassword'));
-// const PostUser = React.lazy(() => import('../pages/posts-user/PostUser'));
+const PostUser = React.lazy(() => import('../pages/posts-user/PostUser'));
 //Dashboard
 const Dashboard = React.lazy(() => import('../pages/dashboard/Dashboard'));
 

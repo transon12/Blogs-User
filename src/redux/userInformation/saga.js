@@ -9,11 +9,8 @@ function* changePassword ({ payload: { params } }){
     if (response.status === 200) {
       const data = response.data ? response.data : null;
       yield put(responseSuccess(MeTypes.CHANGE_PASSWORD, data));
-      
-
     }
   } catch (error) {
-    console.log(error);
     yield put(responseError(MeTypes.CHANGE_PASSWORD, error));
   }
 
