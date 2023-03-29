@@ -84,8 +84,9 @@
 }
 
 .postlike-img img {
+    clip-path: circle(40%);
+    height: 5em;
     width: 100%;
-    border-radius: 999px;
 }
 
 .postlike-d1 {
@@ -115,8 +116,19 @@
 }
 
 .postlike-d2 {
-    margin-left: 6%;
+    margin-left: 13%;
     width: 80%;
+    margin-top: -10%;
+    font-size: smaller;
+}
+
+.postlike-description {
+    margin-top: 2%;
+    margin-left: 13%;
+    width: 80%;
+    font-size: smaller;
+    margin-bottom: 1%;
+    color: #686a6a;
 }
 
 .postlike-d2 p {
@@ -277,6 +289,9 @@
 }
 
 .postlist-xemthem {
+    margin-top: -3%;
+    display: flex;
+    margin-bottom: 10%;
     width: 20%;
     border: none;
     color: red;

@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 import moment from 'moment';
+import { reponseAddlike } from '../../../redux/postlike/actions';
 
 const Postlike = () => {
     const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const Postlike = () => {
         dispatch(getAllPost(timeSort.postList));
     };
 
-    console.log(postList?.data?.listPosts?.data);
+    // console.log(postList?.data?.listPosts?.data);
     return (
         <div className="bodyPostList">
             <div className="narbar-post">
@@ -88,6 +89,7 @@ const Postlike = () => {
                     <ion-icon name="checkmark-circle-outline"></ion-icon>Closed
                 </div>
             </div>
+
             {!postList
                 ? ''
                 : postList?.data?.listPosts?.data.map((post) => {
@@ -114,7 +116,9 @@ const Postlike = () => {
                                               <div
                                                   className="postlike-d2"
                                                   dangerouslySetInnerHTML={{ __html: post.title }}></div>
-                                              &nbsp;
+                                              <div
+                                                  className="postlike-description"
+                                                  dangerouslySetInnerHTML={{ __html: post.description }}></div>
                                               <div className="postlike-botton">
                                                   <button
                                                       onClick={handleClicktag('object_detection')}
@@ -163,6 +167,7 @@ const Postlike = () => {
                                                       <p>{post.name}</p>
                                                   </div>
                                               </div>
+                                              <button className="postlist-xemthem">Xem Thêm</button>
                                           </div>
                                       </Col>
                                   </Row>
